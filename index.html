@@ -1,12 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Eco AzEnergy — Powering Tomorrow</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <title>Eco AzEnergy — Sabahı Gücləndiririk</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,33 +13,29 @@
         }
 
         body {
-            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
             background-color: #ffffff;
-            color: #111111;
+            color: #1d1d1f;
             line-height: 1.4;
             scroll-behavior: smooth;
             overflow-x: hidden;
         }
 
-        /* Smooth scroll + hidden overflow for elegance */
         html {
             scroll-behavior: smooth;
-            overflow-x: hidden;
         }
 
-        /* custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
         }
         ::-webkit-scrollbar-track {
-            background: #f1f1f1;
+            background: #f5f5f7;
         }
         ::-webkit-scrollbar-thumb {
-            background: #888;
+            background: #86868b;
             border-radius: 10px;
         }
 
-        /* global transitions */
         section {
             opacity: 0;
             transform: translateY(24px);
@@ -52,34 +46,28 @@
             transform: translateY(0);
         }
 
-        /* typography */
-        h1, h2, h3 {
-            font-weight: 500;
-            letter-spacing: -0.02em;
-        }
         .headline-xl {
             font-size: clamp(48px, 8vw, 88px);
-            font-weight: 500;
-            line-height: 1.1;
-            letter-spacing: -0.03em;
+            font-weight: 600;
+            line-height: 1.05;
+            letter-spacing: -0.025em;
         }
         .headline-lg {
             font-size: clamp(32px, 5vw, 56px);
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: -0.02em;
         }
         .headline-md {
             font-size: clamp(24px, 4vw, 40px);
-            font-weight: 500;
+            font-weight: 600;
         }
         .subhead {
-            font-size: 18px;
+            font-size: 19px;
             line-height: 1.5;
-            color: #3a3a3a;
+            color: #86868b;
             font-weight: 400;
         }
 
-        /* container */
         .container {
             max-width: 1280px;
             margin: 0 auto;
@@ -91,18 +79,16 @@
             }
         }
 
-        /* navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            backdrop-filter: blur(16px);
+            backdrop-filter: blur(20px);
             background: rgba(255,255,255,0.72);
             z-index: 1000;
-            padding: 18px 0;
+            padding: 16px 0;
             border-bottom: 1px solid rgba(0,0,0,0.05);
-            transition: all 0.2s ease;
         }
         .nav-container {
             max-width: 1400px;
@@ -113,7 +99,7 @@
             align-items: center;
         }
         .logo {
-            font-size: 20px;
+            font-size: 21px;
             font-weight: 600;
             letter-spacing: -0.3px;
             color: #000;
@@ -128,23 +114,22 @@
             text-decoration: none;
             font-size: 14px;
             font-weight: 500;
-            color: #1a1a1a;
+            color: #1d1d1f;
             transition: color 0.2s;
         }
         .nav-links a:hover {
             color: #0066cc;
         }
         .quote-btn {
-            border: 1px solid #111;
-            padding: 8px 20px;
+            border: 1px solid #1d1d1f;
+            padding: 8px 22px;
             border-radius: 30px;
             background: transparent;
             transition: all 0.2s;
         }
         .quote-btn:hover {
-            background: #111;
+            background: #1d1d1f;
             color: white !important;
-            border-color: #111;
         }
         @media (max-width: 800px) {
             .nav-links {
@@ -155,7 +140,6 @@
             }
         }
 
-        /* hero */
         .hero {
             height: 100vh;
             width: 100%;
@@ -167,18 +151,17 @@
             background: #000;
             overflow: hidden;
         }
-        .hero-video-bg {
+        .hero-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.75;
-            transform: scale(1);
-            transition: transform 12s ease-out;
+            opacity: 0.85;
+            transition: transform 10s ease-out;
         }
-        .hero:hover .hero-video-bg {
+        .hero:hover .hero-bg {
             transform: scale(1.03);
         }
         .hero-content {
@@ -208,16 +191,15 @@
         }
         .btn-primary {
             background: white;
-            color: black;
+            color: #1d1d1f;
             padding: 12px 32px;
             border-radius: 40px;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.2s;
-            border: none;
         }
         .btn-primary:hover {
-            background: #eaeaea;
+            background: #e8e8ed;
             transform: scale(0.98);
         }
         .btn-outline-light {
@@ -240,7 +222,7 @@
             transform: translateX(-50%);
             font-size: 12px;
             letter-spacing: 1px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255,255,255,0.6);
             animation: bounce 2s infinite;
         }
         @keyframes bounce {
@@ -248,7 +230,6 @@
             50%{transform:translateX(-50%) translateY(8px);}
         }
 
-        /* credibility stats */
         .stats-section {
             padding: 100px 0;
             background: #fff;
@@ -266,7 +247,7 @@
         }
         .stat-number {
             font-size: 72px;
-            font-weight: 500;
+            font-weight: 600;
             letter-spacing: -0.02em;
             color: #000;
             line-height: 1;
@@ -275,12 +256,8 @@
             font-size: 14px;
             text-transform: uppercase;
             letter-spacing: 2px;
-            color: #5e5e5e;
+            color: #86868b;
             margin-top: 12px;
-        }
-        .divider-vertical {
-            width: 1px;
-            background: #eaeaea;
         }
         @media (max-width: 768px) {
             .stats-grid {
@@ -292,10 +269,9 @@
             }
         }
 
-        /* about 2-col */
         .about {
             padding: 120px 0;
-            background: #fafafa;
+            background: #fbfbfd;
         }
         .about-grid {
             display: grid;
@@ -306,12 +282,12 @@
         .about-lead {
             font-size: 40px;
             line-height: 1.2;
-            font-weight: 500;
+            font-weight: 600;
         }
         .about-text p {
             font-size: 18px;
             line-height: 1.6;
-            color: #2c2c2c;
+            color: #424245;
             margin-bottom: 24px;
         }
         @media (max-width: 900px) {
@@ -321,7 +297,6 @@
             }
         }
 
-        /* solutions block full width alternating */
         .solution-block {
             display: flex;
             flex-direction: row;
@@ -335,7 +310,6 @@
             flex: 1;
             background-size: cover;
             background-position: center;
-            transition: transform 0.4s ease;
         }
         .solution-content {
             flex: 1;
@@ -348,10 +322,11 @@
         .solution-content h3 {
             font-size: 48px;
             margin-bottom: 20px;
+            font-weight: 600;
         }
         .solution-content p {
             font-size: 18px;
-            color: #3a3a3a;
+            color: #424245;
             max-width: 400px;
             margin-bottom: 30px;
         }
@@ -375,7 +350,6 @@
             }
         }
 
-        /* process timeline */
         .process {
             padding: 120px 0;
             background: white;
@@ -401,12 +375,12 @@
         }
         .step-title {
             font-size: 22px;
-            font-weight: 500;
+            font-weight: 600;
             margin-bottom: 12px;
         }
         .step-desc {
             font-size: 14px;
-            color: #5e5e5e;
+            color: #86868b;
         }
         @media (max-width: 768px) {
             .timeline {
@@ -415,7 +389,6 @@
             }
         }
 
-        /* showcase */
         .showcase {
             background: #000;
             color: white;
@@ -441,13 +414,12 @@
         }
         .showcase-label {
             background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(8px);
+            backdrop-filter: blur(12px);
             padding: 12px 24px;
             border-radius: 40px;
             font-weight: 500;
         }
 
-        /* why choose us */
         .why-us {
             padding: 120px 0;
             background: #fff;
@@ -470,10 +442,9 @@
         }
         .feature-desc {
             font-size: 14px;
-            color: #5e5e5e;
+            color: #86868b;
         }
 
-        /* testimonials */
         .testimonials {
             padding: 100px 0;
             background: #f5f5f7;
@@ -487,15 +458,15 @@
         .testimonial-card {
             background: white;
             padding: 48px 40px;
-            border-radius: 32px;
+            border-radius: 28px;
             max-width: 500px;
             flex: 1;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.02);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
         }
         .quote-mark {
             font-size: 48px;
-            font-weight: 300;
-            color: #ccc;
+            font-weight: 400;
+            color: #d2d2d6;
             margin-bottom: 16px;
         }
         .testimonial-text {
@@ -508,10 +479,9 @@
         }
         .testimonial-title {
             font-size: 13px;
-            color: #6e6e73;
+            color: #86868b;
         }
 
-        /* contact */
         .contact {
             padding: 120px 0;
             background: #fff;
@@ -528,7 +498,7 @@
             width: 100%;
             padding: 16px 0;
             border: none;
-            border-bottom: 1px solid #ddd;
+            border-bottom: 1px solid #d2d2d6;
             font-size: 16px;
             font-family: inherit;
             background: transparent;
@@ -539,7 +509,7 @@
             border-bottom-color: #0066cc;
         }
         .submit-btn {
-            background: #000;
+            background: #1d1d1f;
             color: white;
             border: none;
             padding: 14px 32px;
@@ -553,14 +523,14 @@
             font-size: 18px;
         }
         .map-placeholder {
-            background: #e9e9ef;
-            height: 220px;
+            background: #e8e8ed;
+            height: 200px;
             border-radius: 24px;
             margin-top: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #5e5e5e;
+            color: #86868b;
             font-size: 14px;
         }
         @media (max-width: 800px) {
@@ -569,10 +539,9 @@
             }
         }
 
-        /* footer */
         footer {
             padding: 48px 0 64px;
-            border-top: 1px solid #ececec;
+            border-top: 1px solid #f0f0f2;
             background: #fff;
         }
         .footer-inner {
@@ -583,7 +552,7 @@
         }
         .social-links a {
             text-decoration: none;
-            color: #1a1a1a;
+            color: #1d1d1f;
             margin-left: 28px;
             font-size: 14px;
         }
@@ -604,153 +573,141 @@
         <div class="nav-container">
             <a href="#" class="logo">Eco AzEnergy</a>
             <div class="nav-links">
-                <a href="#solutions">Solutions</a>
-                <a href="#projects">Projects</a>
-                <a href="#contact">Contact</a>
-                <a href="#" class="quote-btn">Request Quote</a>
+                <a href="#solutions">Həllər</a>
+                <a href="#projects">Layihələr</a>
+                <a href="#contact">Əlaqə</a>
+                <a href="#" class="quote-btn">Təklif al</a>
             </div>
         </div>
     </nav>
 
     <main>
-        <!-- Hero Section -->
         <section class="hero" id="hero">
-            <video class="hero-video-bg" autoplay muted loop playsinline>
-                <source src="https://cdn.pixabay.com/video/2022/10/08/134122-760547890_large.mp4" type="video/mp4">
-            </video>
+            <img class="hero-bg" src="https://images.pexels.com/photos/2440412/pexels-photo-2440412.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Solar Farm">
             <div class="hero-content">
-                <h1 class="headline-xl">Powering Tomorrow.</h1>
-                <p>Sustainable Solar and Wind Energy Solutions for Industry, Business and Homes.</p>
+                <h1 class="headline-xl">Sabahı gücləndiririk.</h1>
+                <p>Sənaye, biznes və evlər üçün davamlı günəş və külək enerjisi həlləri.</p>
                 <div class="btn-group">
-                    <a href="#solutions" class="btn-primary">Explore Solutions</a>
-                    <a href="#contact" class="btn-outline-light">Contact Us</a>
+                    <a href="#solutions" class="btn-primary">Həlləri kəşf et</a>
+                    <a href="#contact" class="btn-outline-light">Əlaqə saxla</a>
                 </div>
             </div>
-            <div class="scroll-hint">SCROLL</div>
+            <div class="scroll-hint">AŞAĞI ÇƏKİN</div>
         </section>
 
-        <!-- Credibility stats -->
-        <section class="stats-section" id="stats">
+        <section class="stats-section">
             <div class="container">
                 <div class="stats-grid">
-                    <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Successful Projects</div></div>
-                    <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">Industrial & Residential</div></div>
-                    <div class="stat-item"><div class="stat-number">∞</div><div class="stat-label">Clean Energy Across Azerbaijan</div></div>
+                    <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Uğurlu layihə</div></div>
+                    <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">Sənaye & yaşayış</div></div>
+                    <div class="stat-item"><div class="stat-number">∞</div><div class="stat-label">Azərbaycan üzrə təmiz enerji</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- About -->
-        <section class="about" id="about">
+        <section class="about">
             <div class="container">
                 <div class="about-grid">
-                    <div class="about-lead">Engineering Excellence. Sustainable Future.</div>
+                    <div class="about-lead">Mühəndislik təcrübəsi. Davamlı gələcək.</div>
                     <div class="about-text">
-                        <p>Eco AzEnergy combines deep engineering heritage with cutting-edge renewable technology. We design, build and maintain solar & wind infrastructure that redefines reliability.</p>
-                        <p>Innovation isn’t just a promise — it’s embedded in every turbine blade and photovoltaic surface we deploy. Sustainability drives our decisions, from material sourcing to long-term energy output.</p>
+                        <p>Eco AzEnergy qabaqcıl mühəndislik biliklərini yenilənə bilən enerji texnologiyaları ilə birləşdirir. Biz günəş və külək infrastrukturlarını layihələndirir, qurur və idarə edirik.</p>
+                        <p>İnnovasiya sadəcə söz deyil — hər bir turbin qanadında və fotovoltaik paneldədir. Davamlılıq qərarlarımızın mərkəzində dayanır.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Solutions Section (full-width blocks) -->
         <div id="solutions">
             <div class="solution-block">
-                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/414837/pexels-photo-414837.jpeg?auto=compress&cs=tinysrgb&w=1600'); background-size: cover;"></div>
-                <div class="solution-content"><h3>Solar Energy Systems</h3><p>High-yield photovoltaic arrays for industrial scale and residential rooftops. Maximum efficiency with minimalist design.</p><a href="#" class="learn-link">Learn more →</a></div>
+                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/159397/alternative-energy-eco-friendly-solar-panel-pv-159397.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+                <div class="solution-content"><h3>Günəş Enerji Sistemləri</h3><p>Yüksək məhsuldar fotovoltaik qurğular — sənaye miqyasından ev damlarına qədər. Maksimum səmərəlilik, minimalist dizayn.</p><a href="#" class="learn-link">Ətraflı →</a></div>
             </div>
             <div class="solution-block reverse">
-                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/414928/pexels-photo-414928.jpeg?auto=compress&cs=tinysrgb&w=1600'); background-size: cover;"></div>
-                <div class="solution-content"><h3>Wind Energy Systems</h3><p>Advanced onshore wind turbines engineered for low-wind performance and silent operation. Future-proof energy harvesting.</p><a href="#" class="learn-link">Learn more →</a></div>
+                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/414928/pexels-photo-414928.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+                <div class="solution-content"><h3>Külək Enerji Sistemləri</h3><p>Aşağı külək sürətində belə səmərəli, səssiz işləyən turbinlar. Gələcəyin enerji təhlükəsizliyi üçün.</p><a href="#" class="learn-link">Ətraflı →</a></div>
             </div>
             <div class="solution-block">
-                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/34409/field-power-line-windmill.jpg?auto=compress&cs=tinysrgb&w=1600'); background-size: cover;"></div>
-                <div class="solution-content"><h3>Industrial Energy Solutions</h3><p>Custom microgrids and hybrid renewable systems for factories, data centers, and large-scale operations.</p><a href="#" class="learn-link">Learn more →</a></div>
+                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/34409/field-power-line-windmill.jpg?auto=compress&cs=tinysrgb&w=1600');"></div>
+                <div class="solution-content"><h3>Sənaye Enerji Həlləri</h3><p>Fabrik, məlumat mərkəzləri və böyük obyektlər üçün xüsusi hazırlanmış mikroşəbəkələr.</p><a href="#" class="learn-link">Ətraflı →</a></div>
             </div>
             <div class="solution-block reverse">
-                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/2801285/pexels-photo-2801285.jpeg?auto=compress&cs=tinysrgb&w=1600'); background-size: cover;"></div>
-                <div class="solution-content"><h3>Residential Energy Solutions</h3><p>Elegant solar + storage systems that power modern homes. Silent, intelligent, and investment-grade.</p><a href="#" class="learn-link">Learn more →</a></div>
+                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/2801285/pexels-photo-2801285.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
+                <div class="solution-content"><h3>Yaşayış Enerji Həlləri</h3><p>Zərif günəş + batareya sistemləri. Səssiz, ağıllı və investisiya dəyəri yüksək.</p><a href="#" class="learn-link">Ətraflı →</a></div>
             </div>
         </div>
 
-        <!-- Process -->
         <section class="process">
             <div class="container">
-                <h2 class="headline-lg">Precision Process</h2>
+                <h2 class="headline-lg">Dəqiq prosesimiz</h2>
                 <div class="timeline">
-                    <div class="step"><div class="step-number">01</div><div class="step-title">Consultation</div><div class="step-desc">Energy audit + feasibility study</div></div>
-                    <div class="step"><div class="step-number">02</div><div class="step-title">Engineering Analysis</div><div class="step-desc">Custom design & simulation</div></div>
-                    <div class="step"><div class="step-number">03</div><div class="step-title">Installation</div><div class="step-desc">Precision deployment, minimal disruption</div></div>
-                    <div class="step"><div class="step-number">04</div><div class="step-title">Monitoring & Maintenance</div><div class="step-desc">24/7 digital oversight + proactive care</div></div>
+                    <div class="step"><div class="step-number">01</div><div class="step-title">Konsultasiya</div><div class="step-desc">Enerji auditi + fizibilite</div></div>
+                    <div class="step"><div class="step-number">02</div><div class="step-title">Mühəndislik analizi</div><div class="step-desc">Fərdi dizayn & simulyasiya</div></div>
+                    <div class="step"><div class="step-number">03</div><div class="step-title">Quraşdırma</div><div class="step-desc">Dəqiq tətbiq, minimal müdaxilə</div></div>
+                    <div class="step"><div class="step-number">04</div><div class="step-title">Monitorinq & Baxım</div><div class="step-desc">24/7 rəqəmsal nəzarət + proaktiv xidmət</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Project Showcase -->
         <section class="showcase" id="projects">
             <div class="container">
-                <h2 class="headline-lg" style="color:white; margin-bottom:56px;">Project showcase</h2>
+                <h2 class="headline-lg" style="color:white; margin-bottom:56px;">Layihələrimiz</h2>
                 <div class="showcase-grid">
-                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/414837/pexels-photo-414837.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Solar Farm · Ganja Region · 45MW</div></div>
-                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/6463385/pexels-photo-6463385.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Industrial Rooftop · Baku Industrial Zone</div></div>
-                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/51835/wind-energy-turbines-sun-energy-51835.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Wind Turbine Installation · Khizi Corridor</div></div>
+                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/414837/pexels-photo-414837.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Günəş stansiyası · Gəncə · 45 MVt</div></div>
+                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/6463385/pexels-photo-6463385.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Sənaye damı · Bakı Sənaye Zonası</div></div>
+                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/51835/wind-energy-turbines-sun-energy-51835.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Külək turbinləri · Xızı dəhlizi</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Why Choose Us -->
         <section class="why-us">
             <div class="container">
-                <h2 class="headline-lg">Why choose us</h2>
+                <h2 class="headline-lg">Niyə biz?</h2>
                 <div class="features-grid">
-                    <div><div class="feature-icon">⚙️</div><div class="feature-title">Engineering Expertise</div><div class="feature-desc">20+ years of energy infrastructure experience</div></div>
-                    <div><div class="feature-icon">📈</div><div class="feature-title">High Efficiency Systems</div><div class="feature-desc">Top-tier conversion rates & yield optimization</div></div>
-                    <div><div class="feature-icon">🔒</div><div class="feature-title">Long-Term Reliability</div><div class="feature-desc">Built for extreme climates, backed by warranties</div></div>
-                    <div><div class="feature-icon">🛠️</div><div class="feature-title">Professional Maintenance</div><div class="feature-desc">Predictive analytics & local service teams</div></div>
-                    <div><div class="feature-icon">🌍</div><div class="feature-title">Sustainable Future</div><div class="feature-desc">Carbon-negative manufacturing partnerships</div></div>
+                    <div><div class="feature-icon">⚙️</div><div class="feature-title">Mühəndislik təcrübəsi</div><div class="feature-desc">20+ il enerji infrastrukturu bilgisi</div></div>
+                    <div><div class="feature-icon">📈</div><div class="feature-title">Yüksək səmərəlilik</div><div class="feature-desc">Optimal çevrilmə nisbətləri</div></div>
+                    <div><div class="feature-icon">🔒</div><div class="feature-title">Uzunmüddətli etibarlılıq</div><div class="feature-desc">Sərt iqlimlər üçün dizayn edilmiş</div></div>
+                    <div><div class="feature-icon">🛠️</div><div class="feature-title">Peşəkar baxım</div><div class="feature-desc">Lokal komandalar + proqnoz analitikası</div></div>
+                    <div><div class="feature-icon">🌍</div><div class="feature-title">Davamlı gələcək</div><div class="feature-desc">Karbon-mənfi istehsal tərəfdaşlığı</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials -->
         <section class="testimonials">
             <div class="container">
-                <h2 class="headline-lg" style="text-align:center; margin-bottom:56px;">Voices of impact</h2>
+                <h2 class="headline-lg" style="text-align:center; margin-bottom:56px;">Müştəri sözləri</h2>
                 <div class="testimonial-grid">
-                    <div class="testimonial-card"><div class="quote-mark">“</div><div class="testimonial-text">Eco AzEnergy delivered our 12MW solar farm ahead of schedule. Their engineering rigor and transparency are unmatched.</div><div class="testimonial-author">— Leyla Mammadova</div><div class="testimonial-title">CEO, Caspian Industries</div></div>
-                    <div class="testimonial-card"><div class="quote-mark">“</div><div class="testimonial-text">The wind energy solution cut our energy costs by 62%. Premium support and zero downtime in two years.</div><div class="testimonial-author">— Rashid Aliyev</div><div class="testimonial-title">Facility Director, AzTech</div></div>
+                    <div class="testimonial-card"><div class="quote-mark">“</div><div class="testimonial-text">Eco AzEnergy 12 MVt günəş stansiyasını vaxtından əvvəl təhvil verdi. Onların mühəndislik ciddiliyi və şəffaflığı rəqibsizdir.</div><div class="testimonial-author">— Leyla Məmmədova</div><div class="testimonial-title">CEO, Caspian Industries</div></div>
+                    <div class="testimonial-card"><div class="quote-mark">“</div><div class="testimonial-text">Külək enerjisi həlli enerji xərclərimizi 62% azaltdı. İki ildir fasiləsiz xidmət.</div><div class="testimonial-author">— Rəşid Əliyev</div><div class="testimonial-title">Direktor, AzTech</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact -->
         <section class="contact" id="contact">
             <div class="container">
                 <div class="contact-grid">
                     <div>
-                        <h2 class="headline-md" style="margin-bottom:36px;">Let’s build tomorrow</h2>
+                        <h2 class="headline-md" style="margin-bottom:36px;">Gəlin sabahı inşa edək</h2>
                         <form id="contactForm">
-                            <div class="form-group"><input type="text" placeholder="Full name" required></div>
-                            <div class="form-group"><input type="email" placeholder="Email address" required></div>
-                            <div class="form-group"><textarea rows="3" placeholder="Project details or message" required></textarea></div>
-                            <button type="submit" class="submit-btn">Send inquiry</button>
+                            <div class="form-group"><input type="text" placeholder="Tam ad" required></div>
+                            <div class="form-group"><input type="email" placeholder="E-poçt ünvanı" required></div>
+                            <div class="form-group"><textarea rows="3" placeholder="Layihə detalları və ya mesaj" required></textarea></div>
+                            <button type="submit" class="submit-btn">Müraciət göndər</button>
                         </form>
                     </div>
                     <div class="contact-info">
-                        <p><strong>Phone</strong><br>+994 12 555 22 10</p>
-                        <p><strong>Email</strong><br>hello@ecoazenergy.az</p>
-                        <p><strong>Headquarters</strong><br>Port Baku, 153 Neftchilar Ave, Baku, Azerbaijan</p>
-                        <div class="map-placeholder">📍 Google Maps — Premium energy district integration</div>
+                        <p><strong>Telefon</strong><br>+994 12 555 22 10</p>
+                        <p><strong>E-poçt</strong><br>hello@ecoazenergy.az</p>
+                        <p><strong>Baş ofis</strong><br>Port Baku, Neftçilər pr., Bakı, Azərbaycan</p>
+                        <div class="map-placeholder">📍 Google Maps — Premium enerji məhəlləsi</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
         <footer>
             <div class="container">
                 <div class="footer-inner">
-                    <div style="font-weight:500;">© 2026 Eco AzEnergy — Clean energy sovereignty</div>
+                    <div style="font-weight:500;">© 2026 Eco AzEnergy — Təmiz enerji həlləri</div>
                     <div class="social-links">
                         <a href="#">LinkedIn</a>
                         <a href="#">Instagram</a>
@@ -762,7 +719,6 @@
     </main>
 
     <script>
-        // Intersection Observer for fade-up sections
         const sections = document.querySelectorAll('section, .solution-block, .process, .showcase, .why-us, .testimonials, .contact');
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -770,31 +726,30 @@
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1, rootMargin: "0px 0px -50px 0px" });
+        }, { threshold: 0.1 });
         sections.forEach(section => observer.observe(section));
-        // also observe stat blocks
-        document.querySelectorAll('.stats-section, .about, .contact, .process, .why-us, .testimonials').forEach(el => observer.observe(el));
-        // manually add visible class for hero
         document.querySelector('.hero')?.classList.add('visible');
         document.querySelector('.stats-section')?.classList.add('visible');
         
-        // simple form alert
+        const heroBg = document.querySelector('.hero-bg');
+        if(heroBg) {
+            window.addEventListener('scroll', () => {
+                let scrolled = window.scrollY;
+                heroBg.style.transform = `scale(${1 + scrolled * 0.0003})`;
+            });
+        }
+
         const form = document.getElementById('contactForm');
         if(form) {
-            form.addEventListener('submit', (e) => {
+            form.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                alert('Thank you. A renewable energy consultant will reach out within 24 hours.');
+                const name = form.querySelector('input[placeholder="Tam ad"]')?.value || '';
+                const email = form.querySelector('input[placeholder="E-poçt ünvanı"]')?.value || '';
+                const message = form.querySelector('textarea')?.value || '';
+                alert('Mesajınız qəbul edildi. 24 saat ərzində cavab verəcəyik.');
                 form.reset();
             });
         }
-        // add parallax effect scroll on hero video softness
-        window.addEventListener('scroll', () => {
-            const heroVideo = document.querySelector('.hero-video-bg');
-            if(heroVideo) {
-                let scrolled = window.scrollY;
-                heroVideo.style.transform = `scale(${1 + scrolled * 0.0003})`;
-            }
-        });
     </script>
 </body>
 </html>
