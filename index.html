@@ -26,7 +26,6 @@
             scroll-behavior: smooth;
         }
 
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
@@ -41,7 +40,6 @@
             background: #424245;
         }
 
-        /* Apple Style Reveal Animation */
         .reveal {
             opacity: 0;
             transform: translateY(40px);
@@ -61,7 +59,6 @@
             .container { padding: 0 24px; }
         }
 
-        /* Typography */
         .headline-xl {
             font-size: clamp(44px, 7vw, 80px);
             font-weight: 600;
@@ -88,7 +85,6 @@
             color: #86868b;
         }
 
-        /* Navigation */
         nav {
             position: fixed;
             top: 0;
@@ -149,7 +145,6 @@
             .nav-links a:not(.quote-btn) { display: none; }
         }
 
-        /* Hero Section */
         .hero {
             height: 100vh;
             position: relative;
@@ -167,8 +162,8 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.7;
-            filter: contrast(1.1) brightness(0.85);
+            opacity: 0.6;
+            filter: contrast(1.05) brightness(0.8);
             transform: scale(1);
             transition: transform 0.1s linear;
         }
@@ -222,7 +217,6 @@
             margin-left: 5px;
         }
 
-        /* Stats Section */
         .stats-section {
             padding: 120px 0 60px;
             background: #000000;
@@ -252,7 +246,6 @@
             .stat-number { font-size: 48px; }
         }
 
-        /* About Section */
         .about {
             padding: 100px 0;
             background: #000000;
@@ -280,7 +273,6 @@
             .about-lead { font-size: 32px; }
         }
 
-        /* Solutions Section */
         .solutions-section {
             padding: 100px 0;
             background: #000000;
@@ -337,7 +329,7 @@
             height: 65%;
             background-size: cover;
             background-position: center;
-            opacity: 0.8;
+            opacity: 0.85;
             pointer-events: none;
             mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
             -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 70%, rgba(0,0,0,0));
@@ -355,7 +347,6 @@
             .bento-card { padding: 32px; height: 480px;}
         }
 
-        /* Process Section */
         .process {
             padding: 120px 0;
             background: #fbfbfd;
@@ -395,7 +386,6 @@
             .timeline { grid-template-columns: 1fr; gap: 20px; }
         }
 
-        /* Showcase / Projects Section */
         .showcase {
             background: #000000;
             padding: 120px 0;
@@ -442,7 +432,6 @@
             .showcase-card { height: 340px; }
         }
 
-        /* Why Us Section */
         .why-us {
             padding: 120px 0;
             background: #000;
@@ -469,7 +458,6 @@
             .features-grid { grid-template-columns: 1fr; gap: 36px; }
         }
 
-        /* Testimonials */
         .testimonials {
             padding: 120px 0;
             background: #121212;
@@ -506,7 +494,6 @@
             .testimonial-grid { grid-template-columns: 1fr; }
         }
 
-        /* Contact Section */
         .contact {
             padding: 120px 0;
             background: #000000;
@@ -571,10 +558,9 @@
             border: 1px solid rgba(255,255,255,0.05);
         }
         @media (max-width: 800px) {
-            .contact-grid { grid-template-color: 1fr; gap: 56px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 56px; }
         }
 
-        /* Footer */
         footer {
             padding: 60px 0;
             background: #000000;
@@ -617,9 +603,9 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
+        <!-- Hero Section - Hər kəsdə açılan qlobal link yerləşdirildi -->
         <section class="hero" id="hero">
-            <img class="hero-bg" src="image_8b6a54.jpg" alt="Eco AzEnergy Hibrid Stansiya">
+            <img class="hero-bg" src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1920&q=80" alt="Eco AzEnergy Hibrid Stansiya">
             <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="headline-xl">Sabahı gücləndiririk.</h1>
@@ -670,16 +656,16 @@
                 <h2 class="headline-lg">İnteqrasiya olunmuş sistemlər.</h2>
                 
                 <div class="bento-grid">
-                    <!-- Geniş Bento Kartı — Lokal olaraq yüklədiyiniz şəkil buraya bağlandı -->
+                    <!-- Qlobal Günəş Stansiyası Şəkli (Hər kəs üçün 100% aktivdir) -->
                     <div class="bento-card full-width">
                         <div class="bento-info">
                             <h3>Günəş stansiyaları</h3>
                             <p>Böyük sənaye sahələrindən premium yaşayış komplekslərinə qədər maksimum səmərəlilik bəxş edən fotovoltaik panellər.</p>
                         </div>
-                        <div class="bento-media" style="background-image: url('gunes-stansiyasi.jpg');"></div>
+                        <div class="bento-media" style="background-image: url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=80');"></div>
                     </div>
 
-                    <!-- Kiçik Kart (Külək) -->
+                    <!-- Külək turbinləri -->
                     <div class="bento-card">
                         <div class="bento-info">
                             <h3>Külək turbinləri</h3>
@@ -688,7 +674,7 @@
                         <div class="bento-media" style="background-image: url('https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
                     </div>
 
-                    <!-- Kiçik Kart (Ağıllı Ev) -->
+                    <!-- Ağıllı enerji sistemləri -->
                     <div class="bento-card">
                         <div class="bento-info">
                             <h3>Ağıllı enerji sistemləri</h3>
@@ -826,7 +812,6 @@
     </main>
 
     <script>
-        // Smooth Scrolling Hero Background effect
         const heroBg = document.querySelector('.hero-bg');
         if(heroBg) {
             window.addEventListener('scroll', () => {
@@ -835,7 +820,6 @@
             });
         }
 
-        // Apple Style Reveal on Scroll
         const reveals = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -847,7 +831,6 @@
         
         reveals.forEach(el => revealObserver.observe(el));
 
-        // Form Handler
         const form = document.getElementById('contactForm');
         if(form) {
             form.addEventListener('submit', (e) => {
