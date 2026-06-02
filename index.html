@@ -152,6 +152,72 @@
             color: #2997ff;
         }
 
+        /* Language Selector Styles */
+        .lang-selector {
+            position: relative;
+            display: inline-block;
+        }
+
+        .lang-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: #f5f5f7;
+            font-family: inherit;
+            font-size: 12px;
+            font-weight: 400;
+            padding: 4px 10px;
+            border-radius: 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: background 0.2s;
+        }
+
+        .lang-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: 32px;
+            right: 0;
+            background: rgba(28, 28, 30, 0.95);
+            backdrop-filter: blur(12px);
+            border-radius: 12px;
+            padding: 8px 0;
+            min-width: 100px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            transition: all 0.2s ease;
+            z-index: 1001;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .lang-selector.open .lang-dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-dropdown button {
+            background: none;
+            border: none;
+            width: 100%;
+            text-align: left;
+            padding: 8px 16px;
+            font-family: inherit;
+            font-size: 13px;
+            color: #f5f5f7;
+            cursor: pointer;
+            transition: background 0.15s;
+        }
+
+        .lang-dropdown button:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
         .quote-btn {
             background: #2997ff;
             color: white !important;
@@ -167,7 +233,7 @@
         }
 
         @media (max-width: 768px) {
-            .nav-links a:not(.quote-btn) {
+            .nav-links a:not(.quote-btn):not(.lang-selector) {
                 display: none;
             }
         }
@@ -295,7 +361,6 @@
                 grid-template-columns: 1fr;
                 gap: 48px;
             }
-
             .stat-number {
                 font-size: 48px;
             }
@@ -332,7 +397,6 @@
                 grid-template-columns: 1fr;
                 gap: 32px;
             }
-
             .about-lead {
                 font-size: 32px;
             }
@@ -420,20 +484,17 @@
             .bento-grid {
                 grid-template-columns: 1fr;
             }
-
             .bento-card.full-width {
                 grid-column: span 1;
                 flex-direction: column;
                 height: 540px;
             }
-
             .bento-card.full-width .bento-media {
                 width: 100%;
                 height: 55%;
                 mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
                 -webkit-mask-image: linear-gradient(to top, rgba(0, 0, 0, 1) 70%, rgba(0, 0, 0, 0));
             }
-
             .bento-card {
                 padding: 32px;
                 height: 480px;
@@ -545,7 +606,6 @@
             .showcase-grid {
                 grid-template-columns: 1fr;
             }
-
             .showcase-card {
                 height: 340px;
             }
@@ -584,47 +644,51 @@
             }
         }
 
+        /* Single testimonial card */
         .testimonials {
             padding: 120px 0;
             background: #121212;
         }
 
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin-top: 56px;
+        .testimonial-single {
+            max-width: 700px;
+            margin: 56px auto 0;
         }
 
         .testimonial-card {
             background: #1c1c1e;
-            padding: 40px;
-            border-radius: 24px;
+            padding: 48px;
+            border-radius: 28px;
+            text-align: center;
         }
 
         .testimonial-text {
-            font-size: 18px;
-            line-height: 1.5;
+            font-size: 22px;
+            line-height: 1.45;
             color: #e8e8ed;
-            margin-bottom: 24px;
-            font-weight: 400;
+            margin-bottom: 28px;
+            font-weight: 500;
+            letter-spacing: -0.01em;
         }
 
         .testimonial-author {
-            font-weight: 500;
+            font-weight: 600;
             color: #f5f5f7;
-            font-size: 15px;
+            font-size: 17px;
         }
 
         .testimonial-title {
-            font-size: 13px;
+            font-size: 14px;
             color: #86868b;
-            margin-top: 2px;
+            margin-top: 4px;
         }
 
         @media (max-width: 768px) {
-            .testimonial-grid {
-                grid-template-columns: 1fr;
+            .testimonial-card {
+                padding: 32px;
+            }
+            .testimonial-text {
+                font-size: 18px;
             }
         }
 
@@ -744,7 +808,6 @@
                 flex-direction: column;
                 text-align: center;
             }
-
             .social-links a {
                 margin: 0 12px;
             }
@@ -756,93 +819,91 @@
 
     <nav>
         <div class="nav-container">
-            <a href="#" class="logo">Eco AzEnergy</a>
+            <a href="#" class="logo" data-key="logo">Eco AzEnergy</a>
             <div class="nav-links">
-                <a href="#solutions">Həllər</a>
-                <a href="#projects">Layihələr</a>
-                <a href="#contact">Əlaqə</a>
-                <a href="#contact" class="quote-btn">Təklif al</a>
+                <a href="#solutions" data-key="nav_solutions">Həllər</a>
+                <a href="#projects" data-key="nav_projects">Layihələr</a>
+                <a href="#contact" data-key="nav_contact">Əlaqə</a>
+                <div class="lang-selector" id="langSelector">
+                    <button class="lang-btn" id="langBtn">AZ 🌐</button>
+                    <div class="lang-dropdown">
+                        <button data-lang="az">Azərbaycanca</button>
+                        <button data-lang="ru">Русский</button>
+                        <button data-lang="en">English</button>
+                    </div>
+                </div>
+                <a href="#contact" class="quote-btn" data-key="quote_btn">Təklif al</a>
             </div>
         </div>
     </nav>
 
     <main>
-        <!-- Hero Section - Yüksək keyfiyyətli günəş paneli fon şəkli -->
         <section class="hero" id="hero">
             <img class="hero-bg" src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80" alt="Eco AzEnergy Günəş Paneli Ferması">
             <div class="hero-overlay"></div>
             <div class="hero-content">
-                <h1 class="headline-xl">Sabahı gücləndiririk.</h1>
-                <p class="subhead">Sənaye, biznes və yaşayış sahələri üçün tam təmiz mühəndislik və günəş enerjisi ekosistemi.</p>
+                <h1 class="headline-xl" data-key="hero_title">Sabahı gücləndiririk.</h1>
+                <p class="subhead" data-key="hero_subtitle">Sənaye, biznes və yaşayış sahələri üçün tam təmiz mühəndislik və günəş enerjisi ekosistemi.</p>
                 <div class="btn-group">
-                    <a href="#solutions" class="btn-apple primary">Kəşf et</a>
-                    <a href="#contact" class="btn-apple link">Əlaqə saxla</a>
+                    <a href="#solutions" class="btn-apple primary" data-key="hero_btn1">Kəşf et</a>
+                    <a href="#contact" class="btn-apple link" data-key="hero_btn2">Əlaqə saxla</a>
                 </div>
             </div>
         </section>
 
-        <!-- Stats Section -->
         <section class="stats-section reveal">
             <div class="container">
                 <div class="stats-grid">
                     <div class="stat-item">
                         <div class="stat-number">500+</div>
-                        <div class="stat-label">Azərbaycan miqyasında quraşdırılmış yüksək texnologiyalı infrastruktur.</div>
+                        <div class="stat-label" data-key="stat1">Azərbaycan miqyasında quraşdırılmış yüksək texnologiyalı infrastruktur.</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">100%</div>
-                        <div class="stat-label">Ağıllı mühəndislik analizi və fasiləsiz rəqəmsal enerji monitorinqi.</div>
+                        <div class="stat-label" data-key="stat2">Ağıllı mühəndislik analizi və fasiləsiz rəqəmsal enerji monitorinqi.</div>
                     </div>
                     <div class="stat-item">
                         <div class="stat-number">0 Co₂</div>
-                        <div class="stat-label">Gələcək nəsillər üçün tamamilə karbon-mənfi istehsal tərəfdaşlığı.</div>
+                        <div class="stat-label" data-key="stat3">Gələcək nəsillər üçün tamamilə karbon-mənfi istehsal tərəfdaşlığı.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- About Section -->
         <section class="about reveal">
             <div class="container">
                 <div class="about-grid">
-                    <div class="about-lead">Mühəndislik daxili təmizliyimizdir. Davamlı gələcək üçün.</div>
+                    <div class="about-lead" data-key="about_lead">Mühəndislik daxili təmizliyimizdir. Davamlı gələcək üçün.</div>
                     <div class="about-text">
-                        <p>Eco AzEnergy qabaqcıl mühəndislik ciddiliyini yenilənə bilən enerji texnologiyaları ilə birləşdirir. Biz günəş sahələrini və hibrid infrastrukturları dizayn edir, qurur və optimallaşdırırıq.</p>
-                        <p>İnnovasiya sadəcə bəyanat deyil — fotovoltaik hüceyrələrin mikroskopik səmərəliliyindədir. Davamlılıq hər bir qərarımızın nüvəsindədir.</p>
+                        <p data-key="about_p1">Eco AzEnergy qabaqcıl mühəndislik ciddiliyini yenilənə bilən enerji texnologiyaları ilə birləşdirir. Biz günəş sahələrini və hibrid infrastrukturları dizayn edir, qurur və optimallaşdırırıq.</p>
+                        <p data-key="about_p2">İnnovasiya sadəcə bəyanat deyil — fotovoltaik hüceyrələrin mikroskopik səmərəliliyindədir. Davamlılıq hər bir qərarımızın nüvəsindədir.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Solutions Section (Bento Grid) -->
         <section class="solutions-section reveal" id="solutions">
             <div class="container">
-                <h2 class="headline-lg">İnteqrasiya olunmuş sistemlər.</h2>
-
+                <h2 class="headline-lg" data-key="solutions_title">İnteqrasiya olunmuş sistemlər.</h2>
                 <div class="bento-grid">
-                    <!-- Günəş Stansiyası -->
                     <div class="bento-card full-width">
                         <div class="bento-info">
-                            <h3>Günəş stansiyaları</h3>
-                            <p>Böyük sənaye sahələrindən premium yaşayış komplekslərinə qədər maksimum səmərəlilik bəxş edən fotovoltaik panellər.</p>
+                            <h3 data-key="solar_title">Günəş stansiyaları</h3>
+                            <p data-key="solar_desc">Böyük sənaye sahələrindən premium yaşayış komplekslərinə qədər maksimum səmərəlilik bəxş edən fotovoltaik panellər.</p>
                         </div>
                         <div class="bento-media" style="background-image: url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=80');"></div>
                     </div>
-
-                    <!-- Külək turbinləri -->
                     <div class="bento-card">
                         <div class="bento-info">
-                            <h3>Külək turbinləri</h3>
-                            <p>Aşağı külək sürətində belə səssiz və stabil generasiya təmin edən aerodinamik infrastruktur.</p>
+                            <h3 data-key="wind_title">Külək turbinləri</h3>
+                            <p data-key="wind_desc">Aşağı külək sürətində belə səssiz və stabil generasiya təmin edən aerodinamik infrastruktur.</p>
                         </div>
                         <div class="bento-media" style="background-image: url('https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
                     </div>
-
-                    <!-- Ağıllı enerji sistemləri -->
                     <div class="bento-card">
                         <div class="bento-info">
-                            <h3>Ağıllı enerji sistemləri</h3>
-                            <p>Minimalist yaşayış sahələri üçün dizayn edilmiş estetik damüstü panellər və batareya saxlanc bölmələri.</p>
+                            <h3 data-key="smart_title">Ağıllı enerji sistemləri</h3>
+                            <p data-key="smart_desc">Minimalist yaşayış sahələri üçün dizayn edilmiş estetik damüstü panellər və batareya saxlanc bölmələri.</p>
                         </div>
                         <div class="bento-media" style="background-image: url('https://images.pexels.com/photos/9875441/pexels-photo-9875441.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
                     </div>
@@ -850,132 +911,220 @@
             </div>
         </section>
 
-        <!-- Process Section -->
         <section class="process reveal">
             <div class="container">
-                <h2 class="headline-lg">Sadə. Şəffaf. Dəqiq.</h2>
+                <h2 class="headline-lg" data-key="process_title">Sadə. Şəffaf. Dəqiq.</h2>
                 <div class="timeline">
-                    <div class="step">
-                        <div class="step-number">01</div>
-                        <div class="step-title">Konsultasiya</div>
-                        <div class="step-desc">Enerji infrastrukturunun auditi və fizibilite hesabatı.</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">02</div>
-                        <div class="step-title">Simulyasiya</div>
-                        <div class="step-desc">Fərdi mühəndislik analizi və 3D dizayn planlaması.</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">03</div>
-                        <div class="step-title">İnteqrasiya</div>
-                        <div class="step-desc">Minimal müdaxilə ilə sürətli və mükəmməl quraşdırılma.</div>
-                    </div>
-                    <div class="step">
-                        <div class="step-number">04</div>
-                        <div class="step-title">Monitorinq</div>
-                        <div class="step-desc">24/7 rəqəmsal izləmə və proaktiv uzaqdan xidmət.</div>
-                    </div>
+                    <div class="step"><div class="step-number">01</div><div class="step-title" data-key="step1_title">Konsultasiya</div><div class="step-desc" data-key="step1_desc">Enerji infrastrukturunun auditi və fizibilite hesabatı.</div></div>
+                    <div class="step"><div class="step-number">02</div><div class="step-title" data-key="step2_title">Simulyasiya</div><div class="step-desc" data-key="step2_desc">Fərdi mühəndislik analizi və 3D dizayn planlaması.</div></div>
+                    <div class="step"><div class="step-number">03</div><div class="step-title" data-key="step3_title">İnteqrasiya</div><div class="step-desc" data-key="step3_desc">Minimal müdaxilə ilə sürətli və mükəmməl quraşdırılma.</div></div>
+                    <div class="step"><div class="step-number">04</div><div class="step-title" data-key="step4_title">Monitorinq</div><div class="step-desc" data-key="step4_desc">24/7 rəqəmsal izləmə və proaktiv uzaqdan xidmət.</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Showcase / Projects Section -->
         <section class="showcase reveal" id="projects">
             <div class="container">
-                <h2 class="headline-lg">Sonuncu layihələr.</h2>
+                <h2 class="headline-lg" data-key="projects_title">Sonuncu layihələr.</h2>
                 <div class="showcase-grid">
-                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/1402377/pexels-photo-1402377.jpeg?auto=compress&cs=tinysrgb&w=800');">
-                        <div class="showcase-label">Gəncə Günəş Farmı · 45 MVt</div>
-                    </a>
-                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/97959/pexels-photo-97959.jpeg?auto=compress&cs=tinysrgb&w=800');">
-                        <div class="showcase-label">Bakı Sənaye Damı Layihəsi</div>
-                    </a>
-                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/414807/pexels-photo-414807.jpeg?auto=compress&cs=tinysrgb&w=800');">
-                        <div class="showcase-label">Xızı Külək Dəhlizi Kompleksi</div>
-                    </a>
+                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/1402377/pexels-photo-1402377.jpeg?auto=compress&cs=tinysrgb&w=800');"><div class="showcase-label" data-key="project1">Gəncə Günəş Farmı · 45 MVt</div></a>
+                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/97959/pexels-photo-97959.jpeg?auto=compress&cs=tinysrgb&w=800');"><div class="showcase-label" data-key="project2">Bakı Sənaye Damı Layihəsi</div></a>
+                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/414807/pexels-photo-414807.jpeg?auto=compress&cs=tinysrgb&w=800');"><div class="showcase-label" data-key="project3">Xızı Külək Dəhlizi Kompleksi</div></a>
                 </div>
             </div>
         </section>
 
-        <!-- Why Us Section -->
         <section class="why-us reveal">
             <div class="container">
-                <h2 class="headline-lg">Niyə Eco AzEnergy?</h2>
+                <h2 class="headline-lg" data-key="why_title">Niyə Eco AzEnergy?</h2>
                 <div class="features-grid">
-                    <div>
-                        <div class="feature-title">İllərin mühəndislik təcrübəsi</div>
-                        <div class="feature-desc">Enerji mühəndisliyi sahəsində dərin lokal və beynəlxalq standartlaşdırma biliyi.</div>
-                    </div>
-                    <div>
-                        <div class="feature-title">Maksimum səmərəlilik</div>
-                        <div class="feature-desc">İqlim şəraitinə uyğun olaraq optimallaşdırılmış fotovoltaik çevrilmə əmsalı.</div>
-                    </div>
-                    <div>
-                        <div class="feature-title">Premium dəstək</div>
-                        <div class="feature-desc">Lokal mobil texniki komandalar və kəsintisiz proqnozlaşdırılan proqram təminatı.</div>
-                    </div>
+                    <div><div class="feature-title" data-key="feature1_title">İllərin mühəndislik təcrübəsi</div><div class="feature-desc" data-key="feature1_desc">Enerji mühəndisliyi sahəsində dərin lokal və beynəlxalq standartlaşdırma biliyi.</div></div>
+                    <div><div class="feature-title" data-key="feature2_title">Maksimum səmərəlilik</div><div class="feature-desc" data-key="feature2_desc">İqlim şəraitinə uyğun olaraq optimallaşdırılmış fotovoltaik çevrilmə əmsalı.</div></div>
+                    <div><div class="feature-title" data-key="feature3_title">Premium dəstək</div><div class="feature-desc" data-key="feature3_desc">Lokal mobil texniki komandalar və kəsintisiz proqnozlaşdırılan proqram təminatı.</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Testimonials - ad dəyişikliyi: İkinci rəy üçün Hamza Valiyev -->
+        <!-- Only Hamza Valiyev testimonial remains -->
         <section class="testimonials reveal">
             <div class="container">
-                <h2 class="headline-lg">Müştəri rəyləri.</h2>
-                <div class="testimonial-grid">
+                <h2 class="headline-lg" data-key="testimonial_title">Müştəri rəyi.</h2>
+                <div class="testimonial-single">
                     <div class="testimonial-card">
-                        <div class="testimonial-text">“Eco AzEnergy sənaye obyektimiz üçün 12 MVt layihəni gözləniləndən tez tamamladı. Mühəndislik yanaşmaları heyranedicidir.”</div>
-                        <div class="testimonial-author">Leyla Məmmədova</div>
-                        <div class="testimonial-title">CEO, Caspian Industries</div>
-                    </div>
-                    <div class="testimonial-card">
-                        <div class="testimonial-text">“Günəş və hibrid enerji həlli aylıq xərclərimizi tam 62% azaltdı. İki ildir ki, heç bir texniki fasilə yaşamamışıq.”</div>
-                        <div class="testimonial-author">Hamza Valiyev</div>
-                        <div class="testimonial-title">Direktor, AzTech</div>
+                        <div class="testimonial-text" data-key="testimonial_text">“Günəş və hibrid enerji həlli aylıq xərclərimizi tam 62% azaltdı. İki ildir ki, heç bir texniki fasilə yaşamamışıq.”</div>
+                        <div class="testimonial-author" data-key="testimonial_author">Hamza Valiyev</div>
+                        <div class="testimonial-title" data-key="testimonial_title">Direktor, AzTech</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Contact Section -->
         <section class="contact reveal" id="contact">
             <div class="container">
                 <div class="contact-grid">
-                    <div>
-                        <h2 class="headline-md" style="margin-bottom:24px;">Gəlin sabahı inşa edək.</h2>
-                        <form id="contactForm">
-                            <div class="form-group"><input type="text" placeholder="Tam ad" required></div>
-                            <div class="form-group"><input type="email" placeholder="E-poçt" required></div>
-                            <div class="form-group"><textarea rows="3" placeholder="Layihə detalları" required></textarea></div>
-                            <button type="submit" class="submit-btn">Müraciət göndər</button>
-                        </form>
+                    <div><h2 class="headline-md" style="margin-bottom:24px;" data-key="contact_title">Gəlin sabahı inşa edək.</h2>
+                        <form id="contactForm"><div class="form-group"><input type="text" placeholder="Tam ad" data-key="contact_name" required></div>
+                        <div class="form-group"><input type="email" placeholder="E-poçt" data-key="contact_email" required></div>
+                        <div class="form-group"><textarea rows="3" placeholder="Layihə detalları" data-key="contact_message" required></textarea></div>
+                        <button type="submit" class="submit-btn" data-key="contact_btn">Müraciət göndər</button></form>
                     </div>
-                    <div class="contact-info">
-                        <p><strong>Telefon</strong>+994 12 555 22 10</p>
-                        <p><strong>E-poçt</strong>hello@ecoazenergy.az</p>
-                        <p><strong>Baş Ofis</strong>Port Baku, Neftçilər pr., Bakı, Azərbaycan</p>
-                        <div class="map-placeholder">📍 Google Maps — Premium Enerji Məhəlləsi</div>
-                    </div>
+                    <div class="contact-info"><p><strong data-key="contact_phone_label">Telefon</strong>+994 12 555 22 10</p>
+                    <p><strong data-key="contact_email_label">E-poçt</strong>hello@ecoazenergy.az</p>
+                    <p><strong data-key="contact_address_label">Baş Ofis</strong>Port Baku, Neftçilər pr., Bakı, Azərbaycan</p>
+                    <div class="map-placeholder" data-key="map_text">📍 Google Maps — Premium Enerji Məhəlləsi</div></div>
                 </div>
             </div>
         </section>
 
-        <!-- Footer -->
-        <footer>
-            <div class="container">
-                <div class="footer-inner">
-                    <div>© 2026 Eco AzEnergy. Bütün hüquqlar qorunur.</div>
-                    <div class="social-links">
-                        <a href="#">LinkedIn</a>
-                        <a href="#">Instagram</a>
-                        <a href="#">Facebook</a>
-                    </div>
-                </div>
-            </div>
-        </footer>
+        <footer><div class="container"><div class="footer-inner"><div data-key="footer_copyright">© 2026 Eco AzEnergy. Bütün hüquqlar qorunur.</div>
+        <div class="social-links"><a href="#">LinkedIn</a><a href="#">Instagram</a><a href="#">Facebook</a></div></div></div></footer>
     </main>
 
     <script>
+        // Language translations
+        const translations = {
+            az: {
+                logo: "Eco AzEnergy", nav_solutions: "Həllər", nav_projects: "Layihələr", nav_contact: "Əlaqə", quote_btn: "Təklif al",
+                hero_title: "Sabahı gücləndiririk.", hero_subtitle: "Sənaye, biznes və yaşayış sahələri üçün tam təmiz mühəndislik və günəş enerjisi ekosistemi.",
+                hero_btn1: "Kəşf et", hero_btn2: "Əlaqə saxla",
+                stat1: "Azərbaycan miqyasında quraşdırılmış yüksək texnologiyalı infrastruktur.",
+                stat2: "Ağıllı mühəndislik analizi və fasiləsiz rəqəmsal enerji monitorinqi.",
+                stat3: "Gələcək nəsillər üçün tamamilə karbon-mənfi istehsal tərəfdaşlığı.",
+                about_lead: "Mühəndislik daxili təmizliyimizdir. Davamlı gələcək üçün.",
+                about_p1: "Eco AzEnergy qabaqcıl mühəndislik ciddiliyini yenilənə bilən enerji texnologiyaları ilə birləşdirir. Biz günəş sahələrini və hibrid infrastrukturları dizayn edir, qurur və optimallaşdırırıq.",
+                about_p2: "İnnovasiya sadəcə bəyanat deyil — fotovoltaik hüceyrələrin mikroskopik səmərəliliyindədir. Davamlılıq hər bir qərarımızın nüvəsindədir.",
+                solutions_title: "İnteqrasiya olunmuş sistemlər.",
+                solar_title: "Günəş stansiyaları", solar_desc: "Böyük sənaye sahələrindən premium yaşayış komplekslərinə qədər maksimum səmərəlilik bəxş edən fotovoltaik panellər.",
+                wind_title: "Külək turbinləri", wind_desc: "Aşağı külək sürətində belə səssiz və stabil generasiya təmin edən aerodinamik infrastruktur.",
+                smart_title: "Ağıllı enerji sistemləri", smart_desc: "Minimalist yaşayış sahələri üçün dizayn edilmiş estetik damüstü panellər və batareya saxlanc bölmələri.",
+                process_title: "Sadə. Şəffaf. Dəqiq.",
+                step1_title: "Konsultasiya", step1_desc: "Enerji infrastrukturunun auditi və fizibilite hesabatı.",
+                step2_title: "Simulyasiya", step2_desc: "Fərdi mühəndislik analizi və 3D dizayn planlaması.",
+                step3_title: "İnteqrasiya", step3_desc: "Minimal müdaxilə ilə sürətli və mükəmməl quraşdırılma.",
+                step4_title: "Monitorinq", step4_desc: "24/7 rəqəmsal izləmə və proaktiv uzaqdan xidmət.",
+                projects_title: "Sonuncu layihələr.",
+                project1: "Gəncə Günəş Farmı · 45 MVt", project2: "Bakı Sənaye Damı Layihəsi", project3: "Xızı Külək Dəhlizi Kompleksi",
+                why_title: "Niyə Eco AzEnergy?",
+                feature1_title: "İllərin mühəndislik təcrübəsi", feature1_desc: "Enerji mühəndisliyi sahəsində dərin lokal və beynəlxalq standartlaşdırma biliyi.",
+                feature2_title: "Maksimum səmərəlilik", feature2_desc: "İqlim şəraitinə uyğun olaraq optimallaşdırılmış fotovoltaik çevrilmə əmsalı.",
+                feature3_title: "Premium dəstək", feature3_desc: "Lokal mobil texniki komandalar və kəsintisiz proqnozlaşdırılan proqram təminatı.",
+                testimonial_title: "Müştəri rəyi.",
+                testimonial_text: "“Günəş və hibrid enerji həlli aylıq xərclərimizi tam 62% azaltdı. İki ildir ki, heç bir texniki fasilə yaşamamışıq.”",
+                testimonial_author: "Hamza Valiyev", testimonial_title_text: "Direktor, AzTech",
+                contact_title: "Gəlin sabahı inşa edək.", contact_name: "Tam ad", contact_email: "E-poçt", contact_message: "Layihə detalları", contact_btn: "Müraciət göndər",
+                contact_phone_label: "Telefon", contact_email_label: "E-poçt", contact_address_label: "Baş Ofis", map_text: "📍 Google Maps — Premium Enerji Məhəlləsi",
+                footer_copyright: "© 2026 Eco AzEnergy. Bütün hüquqlar qorunur."
+            },
+            ru: {
+                logo: "Eco AzEnergy", nav_solutions: "Решения", nav_projects: "Проекты", nav_contact: "Контакты", quote_btn: "Запросить предложение",
+                hero_title: "Укрепляем будущее.", hero_subtitle: "Полностью чистая инженерия и солнечная экосистема для промышленности, бизнеса и жилых помещений.",
+                hero_btn1: "Исследовать", hero_btn2: "Связаться",
+                stat1: "Высокотехнологичная инфраструктура, установленная по всему Азербайджану.",
+                stat2: "Интеллектуальный инженерный анализ и непрерывный цифровой мониторинг энергии.",
+                stat3: "Полностью углеродно-негативное производственное партнерство для будущих поколений.",
+                about_lead: "Инженерия — наша внутренняя чистота. Для устойчивого будущего.",
+                about_p1: "Eco AzEnergy сочетает передовую инженерную строгость с технологиями возобновляемой энергии. Мы проектируем, строим и оптимизируем солнечные поля и гибридную инфраструктуру.",
+                about_p2: "Инновации — это не просто заявление: это микроскопическая эффективность фотоэлектрических элементов. Устойчивость лежит в основе каждого нашего решения.",
+                solutions_title: "Интегрированные системы.",
+                solar_title: "Солнечные станции", solar_desc: "Фотоэлектрические панели, обеспечивающие максимальную эффективность: от крупных промышленных объектов до премиальных жилых комплексов.",
+                wind_title: "Ветряные турбины", wind_desc: "Аэродинамическая инфраструктура, обеспечивающая тихую и стабильную генерацию даже при низкой скорости ветра.",
+                smart_title: "Умные энергосистемы", smart_desc: "Эстетичные крышные панели и аккумуляторные блоки, разработанные для минималистичных жилых помещений.",
+                process_title: "Просто. Прозрачно. Точно.",
+                step1_title: "Консультация", step1_desc: "Аудит энергетической инфраструктуры и отчет о feasibility.",
+                step2_title: "Симуляция", step2_desc: "Индивидуальный инженерный анализ и 3D планирование дизайна.",
+                step3_title: "Интеграция", step3_desc: "Быстрая и безупречная установка с минимальным вмешательством.",
+                step4_title: "Мониторинг", step4_desc: "Круглосуточный цифровой мониторинг и proactive удаленное обслуживание.",
+                projects_title: "Последние проекты.",
+                project1: "Гянджинская солнечная ферма · 45 МВт", project2: "Проект промышленной крыши Баку", project3: "Ветровой коридор Хызы",
+                why_title: "Почему Eco AzEnergy?",
+                feature1_title: "Многолетний инженерный опыт", feature1_desc: "Глубокие знания локальных и международных стандартов в области энергетики.",
+                feature2_title: "Максимальная эффективность", feature2_desc: "Оптимизированный коэффициент фотоэлектрического преобразования с учетом климатических условий.",
+                feature3_title: "Премиум поддержка", feature3_desc: "Локальные мобильные технические команды и предиктивное программное обеспечение без простоев.",
+                testimonial_title: "Отзыв клиента.",
+                testimonial_text: "“Решение на основе солнечной и гибридной энергии снизило наши ежемесячные расходы на целых 62%. Уже два года у нас нет технических простоев.”",
+                testimonial_author: "Гамза Валиев", testimonial_title_text: "Директор, AzTech",
+                contact_title: "Давайте строить завтрашний день.", contact_name: "Полное имя", contact_email: "Электронная почта", contact_message: "Детали проекта", contact_btn: "Отправить запрос",
+                contact_phone_label: "Телефон", contact_email_label: "Эл. почта", contact_address_label: "Главный офис", map_text: "📍 Google Maps — Премиум энергетический квартал",
+                footer_copyright: "© 2026 Eco AzEnergy. Все права защищены."
+            },
+            en: {
+                logo: "Eco AzEnergy", nav_solutions: "Solutions", nav_projects: "Projects", nav_contact: "Contact", quote_btn: "Get Quote",
+                hero_title: "Powering tomorrow.", hero_subtitle: "Complete clean engineering and solar energy ecosystem for industrial, business, and residential spaces.",
+                hero_btn1: "Explore", hero_btn2: "Contact Us",
+                stat1: "High-tech infrastructure installed across Azerbaijan.",
+                stat2: "Smart engineering analysis & continuous digital energy monitoring.",
+                stat3: "Fully carbon-negative manufacturing partnership for future generations.",
+                about_lead: "Engineering is our inner cleanliness. For a sustainable future.",
+                about_p1: "Eco AzEnergy combines advanced engineering rigor with renewable energy technologies. We design, build, and optimize solar fields and hybrid infrastructures.",
+                about_p2: "Innovation is not just a statement — it's the microscopic efficiency of photovoltaic cells. Sustainability is at the core of every decision we make.",
+                solutions_title: "Integrated systems.",
+                solar_title: "Solar stations", solar_desc: "Photovoltaic panels delivering maximum efficiency — from large industrial sites to premium residential complexes.",
+                wind_title: "Wind turbines", wind_desc: "Aerodynamic infrastructure providing silent and stable generation even at low wind speeds.",
+                smart_title: "Smart energy systems", smart_desc: "Aesthetic rooftop panels and battery storage units designed for minimalist living spaces.",
+                process_title: "Simple. Transparent. Precise.",
+                step1_title: "Consultation", step1_desc: "Energy infrastructure audit and feasibility report.",
+                step2_title: "Simulation", step2_desc: "Custom engineering analysis and 3D design planning.",
+                step3_title: "Integration", step3_desc: "Fast and flawless installation with minimal disruption.",
+                step4_title: "Monitoring", step4_desc: "24/7 digital tracking and proactive remote service.",
+                projects_title: "Latest projects.",
+                project1: "Ganja Solar Farm · 45 MW", project2: "Baku Industrial Rooftop Project", project3: "Khizi Wind Corridor Complex",
+                why_title: "Why Eco AzEnergy?",
+                feature1_title: "Years of engineering experience", feature1_desc: "Deep knowledge of local and international energy standardization.",
+                feature2_title: "Maximum efficiency", feature2_desc: "Optimized photovoltaic conversion ratio based on climate conditions.",
+                feature3_title: "Premium support", feature3_desc: "Local mobile technical teams and predictive software with zero downtime.",
+                testimonial_title: "Client testimony.",
+                testimonial_text: "“The solar and hybrid energy solution reduced our monthly costs by a full 62%. We haven't experienced any technical downtime for two years.”",
+                testimonial_author: "Hamza Valiyev", testimonial_title_text: "Director, AzTech",
+                contact_title: "Let's build tomorrow.", contact_name: "Full name", contact_email: "Email", contact_message: "Project details", contact_btn: "Submit request",
+                contact_phone_label: "Phone", contact_email_label: "Email", contact_address_label: "Head Office", map_text: "📍 Google Maps — Premium Energy District",
+                footer_copyright: "© 2026 Eco AzEnergy. All rights reserved."
+            }
+        };
+
+        let currentLang = 'az';
+
+        function applyLanguage(lang) {
+            const t = translations[lang];
+            document.querySelectorAll('[data-key]').forEach(el => {
+                const key = el.getAttribute('data-key');
+                if (t[key] !== undefined) {
+                    if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                        el.placeholder = t[key];
+                    } else {
+                        el.innerText = t[key];
+                    }
+                }
+            });
+            // Update button flag text
+            const langBtn = document.getElementById('langBtn');
+            if (langBtn) {
+                if (lang === 'az') langBtn.innerHTML = 'AZ 🌐';
+                else if (lang === 'ru') langBtn.innerHTML = 'RU 🌐';
+                else langBtn.innerHTML = 'EN 🌐';
+            }
+            currentLang = lang;
+        }
+
+        // Dropdown logic
+        const selector = document.getElementById('langSelector');
+        const btn = document.getElementById('langBtn');
+        if (btn && selector) {
+            btn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                selector.classList.toggle('open');
+            });
+            document.querySelectorAll('.lang-dropdown button').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const lang = btn.getAttribute('data-lang');
+                    if (lang) applyLanguage(lang);
+                    selector.classList.remove('open');
+                });
+            });
+            document.addEventListener('click', () => selector.classList.remove('open'));
+        }
+
+        applyLanguage('az');
+
         const heroBg = document.querySelector('.hero-bg');
         if (heroBg) {
             window.addEventListener('scroll', () => {
@@ -986,15 +1135,8 @@
 
         const reveals = document.querySelectorAll('.reveal');
         const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, {
-            threshold: 0.08
-        });
-
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.08 });
         reveals.forEach(el => revealObserver.observe(el));
 
         const form = document.getElementById('contactForm');
