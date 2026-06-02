@@ -13,136 +13,145 @@
         }
 
         body {
-            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Inter', sans-serif;
-            background-color: #ffffff;
-            color: #1d1d1f;
-            line-height: 1.4;
-            scroll-behavior: smooth;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #000000;
+            color: #f5f5f7;
+            line-height: 1.45;
+            letter-spacing: -0.022em;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
         html {
             scroll-behavior: smooth;
         }
 
+        /* Scrollbar */
         ::-webkit-scrollbar {
-            width: 6px;
+            width: 8px;
         }
         ::-webkit-scrollbar-track {
-            background: #f5f5f7;
+            background: #000000;
         }
         ::-webkit-scrollbar-thumb {
-            background: #86868b;
+            background: #333336;
             border-radius: 10px;
         }
-
-        section {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        ::-webkit-scrollbar-thumb:hover {
+            background: #424245;
         }
-        section.visible {
+
+        /* Apple Style Reveal Animation */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 1.2s cubic-bezier(0.25, 1, 0.5, 1), transform 1.2s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+        .reveal.visible {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .headline-xl {
-            font-size: clamp(48px, 8vw, 88px);
-            font-weight: 600;
-            line-height: 1.05;
-            letter-spacing: -0.025em;
-        }
-        .headline-lg {
-            font-size: clamp(32px, 5vw, 56px);
-            font-weight: 600;
-            letter-spacing: -0.02em;
-        }
-        .headline-md {
-            font-size: clamp(24px, 4vw, 40px);
-            font-weight: 600;
-        }
-        .subhead {
-            font-size: 19px;
-            line-height: 1.5;
-            color: #86868b;
-            font-weight: 400;
-        }
-
         .container {
-            max-width: 1280px;
+            max-width: 1160px;
             margin: 0 auto;
             padding: 0 40px;
         }
         @media (max-width: 768px) {
-            .container {
-                padding: 0 24px;
-            }
+            .container { padding: 0 24px; }
         }
 
+        /* Typography */
+        .headline-xl {
+            font-size: clamp(44px, 7vw, 80px);
+            font-weight: 600;
+            line-height: 1.08;
+            letter-spacing: -0.03em;
+            color: #f5f5f7;
+        }
+        .headline-lg {
+            font-size: clamp(36px, 5vw, 56px);
+            font-weight: 600;
+            line-height: 1.1;
+            letter-spacing: -0.025em;
+            color: #f5f5f7;
+        }
+        .headline-md {
+            font-size: clamp(28px, 4vw, 40px);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+        .subhead {
+            font-size: clamp(19px, 2.5vw, 24px);
+            line-height: 1.42;
+            font-weight: 400;
+            color: #86868b;
+        }
+
+        /* Navigation */
         nav {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             backdrop-filter: blur(20px);
-            background: rgba(255,255,255,0.72);
+            -webkit-backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.75);
             z-index: 1000;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(0,0,0,0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
         .nav-container {
-            max-width: 1400px;
+            max-width: 1024px;
             margin: 0 auto;
-            padding: 0 40px;
+            padding: 0 22px;
+            height: 48px;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
         .logo {
-            font-size: 21px;
-            font-weight: 600;
-            letter-spacing: -0.3px;
-            color: #000;
+            font-size: 17px;
+            font-weight: 500;
+            color: #f5f5f7;
             text-decoration: none;
+            opacity: 0.92;
+            transition: opacity 0.2s;
         }
+        .logo:hover { opacity: 1; }
         .nav-links {
             display: flex;
-            gap: 40px;
+            gap: 32px;
             align-items: center;
         }
         .nav-links a {
             text-decoration: none;
-            font-size: 14px;
-            font-weight: 500;
-            color: #1d1d1f;
-            transition: color 0.2s;
+            font-size: 12px;
+            font-weight: 400;
+            color: #f5f5f7;
+            opacity: 0.8;
+            transition: opacity 0.2s, color 0.2s;
         }
         .nav-links a:hover {
-            color: #0066cc;
+            opacity: 1;
+            color: #2997ff;
         }
         .quote-btn {
-            border: 1px solid #1d1d1f;
-            padding: 8px 22px;
-            border-radius: 30px;
-            background: transparent;
-            transition: all 0.2s;
-        }
-        .quote-btn:hover {
-            background: #1d1d1f;
+            background: #2997ff;
             color: white !important;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-size: 11px !important;
+            font-weight: 400;
+            opacity: 1 !important;
         }
-        @media (max-width: 800px) {
-            .nav-links {
-                gap: 24px;
-            }
-            .nav-links a:not(.quote-btn) {
-                display: none;
-            }
+        .quote-btn:hover { background: #0077ed; }
+        @media (max-width: 768px) {
+            .nav-links a:not(.quote-btn) { display: none; }
         }
 
+        /* Hero Section */
         .hero {
             height: 100vh;
-            width: 100%;
             position: relative;
             display: flex;
             align-items: center;
@@ -158,417 +167,434 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.85;
-            transition: transform 10s ease-out;
+            opacity: 0.55;
+            filter: contrast(1.05) brightness(0.9);
+            transform: scale(1);
+            transition: transform 0.1s linear;
         }
-        .hero:hover .hero-bg {
-            transform: scale(1.03);
+        .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 40vh;
+            background: linear-gradient(180deg, transparent, #000000);
+            z-index: 1;
         }
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 900px;
-            padding: 0 20px;
-            color: white;
-        }
-        .hero-content h1 {
-            color: white;
-            margin-bottom: 20px;
+            max-width: 800px;
+            padding: 0 24px;
         }
         .hero-content p {
-            color: rgba(255,255,255,0.85);
-            font-size: 20px;
-            margin-bottom: 42px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
+            margin-top: 18px;
+            margin-bottom: 32px;
         }
         .btn-group {
             display: flex;
-            gap: 20px;
+            gap: 18px;
             justify-content: center;
-            flex-wrap: wrap;
         }
-        .btn-primary {
-            background: white;
-            color: #1d1d1f;
-            padding: 12px 32px;
-            border-radius: 40px;
+        .btn-apple {
+            font-size: 17px;
+            padding: 12px 22px;
+            border-radius: 28px;
             text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
+            font-weight: 400;
+            display: inline-flex;
+            align-items: center;
+            transition: background 0.2s, transform 0.2s;
         }
-        .btn-primary:hover {
-            background: #e8e8ed;
-            transform: scale(0.98);
-        }
-        .btn-outline-light {
-            background: transparent;
-            border: 1px solid white;
+        .btn-apple.primary {
+            background: #0066cc;
             color: white;
-            padding: 12px 32px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: all 0.2s;
         }
-        .btn-outline-light:hover {
-            background: rgba(255,255,255,0.1);
+        .btn-apple.primary:hover { background: #0077ed; }
+        .btn-apple.link {
+            color: #2997ff;
+            background: transparent;
         }
-        .scroll-hint {
-            position: absolute;
-            bottom: 30px;
-            left: 50%;
-            transform: translateX(-50%);
+        .btn-apple.link:hover { text-decoration: underline; }
+        .btn-apple.link::after {
+            content: " >";
             font-size: 12px;
-            letter-spacing: 1px;
-            color: rgba(255,255,255,0.6);
-            animation: bounce 2s infinite;
-        }
-        @keyframes bounce {
-            0%,100%{transform:translateX(-50%) translateY(0);}
-            50%{transform:translateX(-50%) translateY(8px);}
+            margin-left: 5px;
         }
 
+        /* Stats Section */
         .stats-section {
-            padding: 100px 0;
-            background: #fff;
+            padding: 120px 0 60px;
+            background: #000000;
         }
         .stats-grid {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
             gap: 40px;
-            text-align: center;
+            border-bottom: 1px solid #1d1d1f;
+            padding-bottom: 80px;
         }
-        .stat-item {
-            flex: 1;
-            min-width: 180px;
-        }
+        .stat-item { text-align: left; }
         .stat-number {
-            font-size: 72px;
+            font-size: 56px;
             font-weight: 600;
+            color: #f5f5f7;
             letter-spacing: -0.02em;
-            color: #000;
-            line-height: 1;
         }
         .stat-label {
             font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
             color: #86868b;
-            margin-top: 12px;
+            margin-top: 8px;
+            line-height: 1.4;
         }
         @media (max-width: 768px) {
-            .stats-grid {
-                flex-direction: column;
-                gap: 48px;
-            }
-            .stat-number {
-                font-size: 56px;
-            }
+            .stats-grid { grid-template-columns: 1fr; gap: 48px; }
+            .stat-number { font-size: 48px; }
         }
 
+        /* About Section */
         .about {
-            padding: 120px 0;
-            background: #fbfbfd;
+            padding: 100px 0;
+            background: #000000;
         }
         .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
-            align-items: start;
         }
         .about-lead {
             font-size: 40px;
-            line-height: 1.2;
+            line-height: 1.15;
             font-weight: 600;
+            color: #f5f5f7;
+            letter-spacing: -0.025em;
         }
         .about-text p {
-            font-size: 18px;
-            line-height: 1.6;
-            color: #424245;
+            font-size: 19px;
+            line-height: 1.5;
+            color: #86868b;
             margin-bottom: 24px;
         }
         @media (max-width: 900px) {
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
+            .about-grid { grid-template-columns: 1fr; gap: 32px; }
+            .about-lead { font-size: 32px; }
         }
 
-        .solution-block {
-            display: flex;
-            flex-direction: row;
-            min-height: 90vh;
-            width: 100%;
+        /* Solutions Section (Apple Bento Style Grid) */
+        .solutions-section {
+            padding: 100px 0;
+            background: #000000;
         }
-        .solution-block.reverse {
-            flex-direction: row-reverse;
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            margin-top: 48px;
         }
-        .solution-media {
-            flex: 1;
-            background-size: cover;
-            background-position: center;
-        }
-        .solution-content {
-            flex: 1;
+        .bento-card {
+            background: #121212;
+            border-radius: 28px;
+            height: 520px;
+            overflow: hidden;
+            position: relative;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            padding: 60px;
-            background: #fff;
+            justify-content: space-between;
+            padding: 40px;
+            border: 1px solid rgba(255,255,255,0.03);
+            transition: border 0.3s;
         }
-        .solution-content h3 {
-            font-size: 48px;
-            margin-bottom: 20px;
+        .bento-card:hover {
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .bento-card.full-width {
+            grid-column: span 2;
+            height: 480px;
+            flex-direction: row;
+        }
+        .bento-info {
+            max-width: 320px;
+            z-index: 2;
+        }
+        .bento-card.full-width .bento-info {
+            align-self: center;
+        }
+        .bento-card h3 {
+            font-size: 28px;
             font-weight: 600;
+            margin-bottom: 12px;
+            color: #f5f5f7;
         }
-        .solution-content p {
-            font-size: 18px;
-            color: #424245;
-            max-width: 400px;
-            margin-bottom: 30px;
+        .bento-card p {
+            font-size: 16px;
+            color: #86868b;
         }
-        .learn-link {
-            text-decoration: none;
-            font-weight: 500;
-            color: #0066cc;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
+        .bento-media {
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 60%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        .bento-card.full-width .bento-media {
+            width: 55%;
+            height: 100%;
         }
         @media (max-width: 900px) {
-            .solution-block, .solution-block.reverse {
-                flex-direction: column;
-            }
-            .solution-media {
-                min-height: 400px;
-            }
-            .solution-content {
-                padding: 48px 32px;
-            }
+            .bento-grid { grid-template-columns: 1fr; }
+            .bento-card.full-width { grid-column: span 1; flex-direction: column; height: 520px;}
+            .bento-card.full-width .bento-media { width: 100%; height: 50%; }
+            .bento-card { padding: 32px; height: 460px;}
         }
 
+        /* Process Section */
         .process {
             padding: 120px 0;
-            background: white;
-            text-align: center;
+            background: #fbfbfd;
+            color: #1d1d1f;
         }
+        .process .headline-lg { color: #1d1d1f; }
         .timeline {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 28px;
             margin-top: 64px;
-            gap: 24px;
         }
         .step {
-            flex: 1;
-            text-align: center;
-            padding: 0 12px;
+            background: #ffffff;
+            padding: 32px;
+            border-radius: 20px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.02);
         }
         .step-number {
-            font-size: 18px;
+            font-size: 14px;
             font-weight: 600;
             color: #0066cc;
             margin-bottom: 16px;
         }
         .step-title {
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 600;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            color: #1d1d1f;
         }
         .step-desc {
             font-size: 14px;
-            color: #86868b;
+            color: #6e6e73;
+            line-height: 1.4;
         }
-        @media (max-width: 768px) {
-            .timeline {
-                flex-direction: column;
-                gap: 48px;
-            }
+        @media (max-width: 900px) {
+            .timeline { grid-template-columns: 1fr; gap: 20px; }
         }
 
+        /* Showcase / Projects Section */
         .showcase {
-            background: #000;
-            color: white;
-            padding: 100px 0;
+            background: #000000;
+            padding: 120px 0;
         }
         .showcase-grid {
-            display: flex;
-            flex-direction: column;
-            gap: 32px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 48px;
         }
         .showcase-card {
-            height: 480px;
+            height: 400px;
             background-size: cover;
             background-position: center;
-            border-radius: 28px;
+            border-radius: 24px;
             display: flex;
             align-items: flex-end;
             padding: 32px;
-            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
         }
-        .showcase-card:hover {
-            transform: scale(0.99);
+        .showcase-card::before {
+            content: '';
+            position: absolute;
+            top:0; left:0; width:100%; height:100%;
+            background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 60%);
+            z-index: 1;
         }
         .showcase-label {
-            background: rgba(0,0,0,0.5);
-            backdrop-filter: blur(12px);
-            padding: 12px 24px;
-            border-radius: 40px;
+            position: relative;
+            z-index: 2;
+            color: #ffffff;
+            font-size: 16px;
             font-weight: 500;
         }
+        @media (max-width: 900px) {
+            .showcase-grid { grid-template-columns: 1fr; }
+            .showcase-card { height: 320px; }
+        }
 
+        /* Why Us Section */
         .why-us {
             padding: 120px 0;
-            background: #fff;
-            text-align: center;
+            background: #000;
+            border-top: 1px solid #1d1d1f;
         }
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 48px;
             margin-top: 64px;
-        }
-        .feature-icon {
-            font-size: 36px;
-            margin-bottom: 20px;
         }
         .feature-title {
             font-weight: 600;
             font-size: 20px;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
+            color: #f5f5f7;
         }
         .feature-desc {
-            font-size: 14px;
+            font-size: 15px;
             color: #86868b;
+            line-height: 1.5;
+        }
+        @media (max-width: 900px) {
+            .features-grid { grid-template-columns: 1fr; gap: 36px; }
         }
 
+        /* Testimonials */
         .testimonials {
-            padding: 100px 0;
-            background: #f5f5f7;
+            padding: 120px 0;
+            background: #121212;
         }
         .testimonial-grid {
-            display: flex;
-            gap: 48px;
-            flex-wrap: wrap;
-            justify-content: center;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 56px;
         }
         .testimonial-card {
-            background: white;
-            padding: 48px 40px;
-            border-radius: 28px;
-            max-width: 500px;
-            flex: 1;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
-        }
-        .quote-mark {
-            font-size: 48px;
-            font-weight: 400;
-            color: #d2d2d6;
-            margin-bottom: 16px;
+            background: #1c1c1e;
+            padding: 40px;
+            border-radius: 24px;
         }
         .testimonial-text {
-            font-size: 20px;
-            line-height: 1.4;
-            margin-bottom: 28px;
+            font-size: 18px;
+            line-height: 1.5;
+            color: #e8e8ed;
+            margin-bottom: 24px;
+            font-weight: 400;
         }
         .testimonial-author {
-            font-weight: 600;
+            font-weight: 500;
+            color: #f5f5f7;
+            font-size: 15px;
         }
         .testimonial-title {
             font-size: 13px;
             color: #86868b;
+            margin-top: 2px;
+        }
+        @media (max-width: 768px) {
+            .testimonial-grid { grid-template-columns: 1fr; }
         }
 
+        /* Contact Section */
         .contact {
             padding: 120px 0;
-            background: #fff;
+            background: #000000;
         }
         .contact-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 60px;
+            gap: 80px;
         }
         .form-group {
-            margin-bottom: 24px;
+            margin-bottom: 32px;
         }
         input, textarea {
             width: 100%;
-            padding: 16px 0;
+            padding: 12px 0;
             border: none;
-            border-bottom: 1px solid #d2d2d6;
-            font-size: 16px;
+            border-bottom: 1px solid #424245;
+            font-size: 17px;
             font-family: inherit;
             background: transparent;
-            transition: border 0.2s;
+            color: #f5f5f7;
+            transition: border-bottom-color 0.3s;
         }
         input:focus, textarea:focus {
             outline: none;
-            border-bottom-color: #0066cc;
+            border-bottom-color: #2997ff;
         }
         .submit-btn {
-            background: #1d1d1f;
-            color: white;
+            background: #f5f5f7;
+            color: #1d1d1f;
             border: none;
-            padding: 14px 32px;
-            border-radius: 40px;
+            padding: 12px 24px;
+            border-radius: 24px;
+            font-size: 15px;
             font-weight: 500;
             cursor: pointer;
-            margin-top: 16px;
+            transition: opacity 0.2s;
         }
+        .submit-btn:hover { opacity: 0.9; }
         .contact-info p {
-            margin-bottom: 24px;
-            font-size: 18px;
+            margin-bottom: 28px;
+            font-size: 17px;
+            color: #86868b;
+            line-height: 1.5;
+        }
+        .contact-info strong {
+            color: #f5f5f7;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 4px;
         }
         .map-placeholder {
-            background: #e8e8ed;
-            height: 200px;
-            border-radius: 24px;
-            margin-top: 32px;
+            background: #1c1c1e;
+            height: 180px;
+            border-radius: 18px;
+            margin-top: 40px;
             display: flex;
             align-items: center;
             justify-content: center;
             color: #86868b;
             font-size: 14px;
+            border: 1px solid rgba(255,255,255,0.05);
         }
         @media (max-width: 800px) {
-            .contact-grid {
-                grid-template-columns: 1fr;
-            }
+            .contact-grid { grid-template-columns: 1fr; gap: 56px; }
         }
 
+        /* Footer */
         footer {
-            padding: 48px 0 64px;
-            border-top: 1px solid #f0f0f2;
-            background: #fff;
+            padding: 60px 0;
+            background: #000000;
+            border-top: 1px solid #1d1d1f;
+            font-size: 12px;
+            color: #86868b;
         }
         .footer-inner {
             display: flex;
             justify-content: space-between;
+            align-items: center;
             flex-wrap: wrap;
-            gap: 32px;
+            gap: 20px;
         }
         .social-links a {
             text-decoration: none;
-            color: #1d1d1f;
-            margin-left: 28px;
-            font-size: 14px;
+            color: #86868b;
+            margin-left: 24px;
+            transition: color 0.2s;
         }
-        @media (max-width: 700px) {
-            .footer-inner {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
-            }
-            .social-links a {
-                margin: 0 12px;
-            }
+        .social-links a:hover { color: #f5f5f7; }
+        @media (max-width: 600px) {
+            .footer-inner { flex-direction: column; text-align: center; }
+            .social-links a { margin: 0 12px; }
         }
     </style>
 </head>
 <body>
+
     <nav>
         <div class="nav-container">
             <a href="#" class="logo">Eco AzEnergy</a>
@@ -576,138 +602,210 @@
                 <a href="#solutions">Həllər</a>
                 <a href="#projects">Layihələr</a>
                 <a href="#contact">Əlaqə</a>
-                <a href="#" class="quote-btn">Təklif al</a>
+                <a href="#contact" class="quote-btn">Təklif al</a>
             </div>
         </div>
     </nav>
 
     <main>
+        <!-- Hero Section - Premium Solar Farm Focus -->
         <section class="hero" id="hero">
-            <img class="hero-bg" src="https://images.pexels.com/photos/2440412/pexels-photo-2440412.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Solar Farm">
+            <img class="hero-bg" src="https://images.pexels.com/photos/2440412/pexels-photo-2440412.jpeg?auto=compress&cs=tinysrgb&w=1920" alt="Premium Solar Farm field">
+            <div class="hero-overlay"></div>
             <div class="hero-content">
                 <h1 class="headline-xl">Sabahı gücləndiririk.</h1>
-                <p>Sənaye, biznes və evlər üçün davamlı günəş və külək enerjisi həlləri.</p>
+                <p class="subhead">Sənaye, biznes və yaşayış sahələri üçün tam təmiz mühəndislik və günəş enerjisi ekosistemi.</p>
                 <div class="btn-group">
-                    <a href="#solutions" class="btn-primary">Həlləri kəşf et</a>
-                    <a href="#contact" class="btn-outline-light">Əlaqə saxla</a>
+                    <a href="#solutions" class="btn-apple primary">Kəşf et</a>
+                    <a href="#contact" class="btn-apple link">Əlaqə saxla</a>
                 </div>
             </div>
-            <div class="scroll-hint">AŞAĞI ÇƏKİN</div>
         </section>
 
-        <section class="stats-section">
+        <!-- Stats Section -->
+        <section class="stats-section reveal">
             <div class="container">
                 <div class="stats-grid">
-                    <div class="stat-item"><div class="stat-number">500+</div><div class="stat-label">Uğurlu layihə</div></div>
-                    <div class="stat-item"><div class="stat-number">100+</div><div class="stat-label">Sənaye & yaşayış</div></div>
-                    <div class="stat-item"><div class="stat-number">∞</div><div class="stat-label">Azərbaycan üzrə təmiz enerji</div></div>
-                </div>
-            </div>
-        </section>
-
-        <section class="about">
-            <div class="container">
-                <div class="about-grid">
-                    <div class="about-lead">Mühəndislik təcrübəsi. Davamlı gələcək.</div>
-                    <div class="about-text">
-                        <p>Eco AzEnergy qabaqcıl mühəndislik biliklərini yenilənə bilən enerji texnologiyaları ilə birləşdirir. Biz günəş və külək infrastrukturlarını layihələndirir, qurur və idarə edirik.</p>
-                        <p>İnnovasiya sadəcə söz deyil — hər bir turbin qanadında və fotovoltaik paneldədir. Davamlılıq qərarlarımızın mərkəzində dayanır.</p>
+                    <div class="stat-item">
+                        <div class="stat-number">500+</div>
+                        <div class="stat-label">Azərbaycan miqyasında quraşdırılmış yüksək texnologiyalı infrastruktur.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Ağıllı mühəndislik analizi və fasiləsiz rəqəmsal enerji monitorinqi.</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">0 Co₂</div>
+                        <div class="stat-label">Gələcək nəsillər üçün tamamilə karbon-mənfi istehsal tərəfdaşlığı.</div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div id="solutions">
-            <div class="solution-block">
-                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/159397/alternative-energy-eco-friendly-solar-panel-pv-159397.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
-                <div class="solution-content"><h3>Günəş Enerji Sistemləri</h3><p>Yüksək məhsuldar fotovoltaik qurğular — sənaye miqyasından ev damlarına qədər. Maksimum səmərəlilik, minimalist dizayn.</p><a href="#" class="learn-link">Ətraflı →</a></div>
-            </div>
-            <div class="solution-block reverse">
-                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/414928/pexels-photo-414928.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
-                <div class="solution-content"><h3>Külək Enerji Sistemləri</h3><p>Aşağı külək sürətində belə səmərəli, səssiz işləyən turbinlar. Gələcəyin enerji təhlükəsizliyi üçün.</p><a href="#" class="learn-link">Ətraflı →</a></div>
-            </div>
-            <div class="solution-block">
-                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/34409/field-power-line-windmill.jpg?auto=compress&cs=tinysrgb&w=1600');"></div>
-                <div class="solution-content"><h3>Sənaye Enerji Həlləri</h3><p>Fabrik, məlumat mərkəzləri və böyük obyektlər üçün xüsusi hazırlanmış mikroşəbəkələr.</p><a href="#" class="learn-link">Ətraflı →</a></div>
-            </div>
-            <div class="solution-block reverse">
-                <div class="solution-media" style="background-image: url('https://images.pexels.com/photos/2801285/pexels-photo-2801285.jpeg?auto=compress&cs=tinysrgb&w=1600');"></div>
-                <div class="solution-content"><h3>Yaşayış Enerji Həlləri</h3><p>Zərif günəş + batareya sistemləri. Səssiz, ağıllı və investisiya dəyəri yüksək.</p><a href="#" class="learn-link">Ətraflı →</a></div>
-            </div>
-        </div>
-
-        <section class="process">
+        <!-- About Section -->
+        <section class="about reveal">
             <div class="container">
-                <h2 class="headline-lg">Dəqiq prosesimiz</h2>
+                <div class="about-grid">
+                    <div class="about-lead">Mühəndislik daxili təmizliyimizdir. Davamlı gələcək üçün.</div>
+                    <div class="about-text">
+                        <p>Eco AzEnergy qabaqcıl mühəndislik ciddiliyini yenilənə bilən enerji texnologiyaları ilə birləşdirir. Biz günəş sahələrini və hibrid infrastrukturları dizayn edir, qurur və optimallaşdırırıq.</p>
+                        <p>İnnovasiya sadəcə bəyanat deyil — fotovoltaik hüceyrələrin mikroskopik səmərəliliyindədir. Davamlılıq hər bir qərarımızın nüvəsindədir.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Solutions Section (Apple Bento Style Layout) -->
+        <section class="solutions-section reveal" id="solutions">
+            <div class="container">
+                <h2 class="headline-lg">İnteqrasiya olunmuş sistemlər.</h2>
+                
+                <div class="bento-grid">
+                    <!-- Geniş Kart: Günəş Enerjisi -->
+                    <div class="bento-card full-width">
+                        <div class="bento-info">
+                            <h3>Günəş stansiyaları</h3>
+                            <p>Böyük sənaye sahələrindən premium yaşayış komplekslərinə qədər maksimum səmərəlilik bəxş edən fotovoltaik panellər.</p>
+                        </div>
+                        <div class="bento-media" style="background-image: url('https://images.pexels.com/photos/159397/alternative-energy-eco-friendly-solar-panel-pv-159397.jpeg?auto=compress&cs=tinysrgb&w=1000');"></div>
+                    </div>
+
+                    <!-- Kiçik Kart: Külək Enerjisi -->
+                    <div class="bento-card">
+                        <div class="bento-info">
+                            <h3>Külək turbinləri</h3>
+                            <p>Aşağı külək sürətində belə səssiz və stabil generasiya.</p>
+                        </div>
+                        <div class="bento-media" style="background-image: url('https://images.pexels.com/photos/414928/pexels-photo-414928.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+                    </div>
+
+                    <!-- Kiçik Kart: Batareya Sistemləri -->
+                    <div class="bento-card">
+                        <div class="bento-info">
+                            <h3>Ağıllı batareyalar</h3>
+                            <p>Gecə və gündüz kəsilməz enerji saxlama texnologiyası.</p>
+                        </div>
+                        <div class="bento-media" style="background-image: url('https://images.pexels.com/photos/2801285/pexels-photo-2801285.jpeg?auto=compress&cs=tinysrgb&w=800');"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Process Section -->
+        <section class="process reveal">
+            <div class="container">
+                <h2 class="headline-lg">Sadə. Şəffaf. Dəqiq.</h2>
                 <div class="timeline">
-                    <div class="step"><div class="step-number">01</div><div class="step-title">Konsultasiya</div><div class="step-desc">Enerji auditi + fizibilite</div></div>
-                    <div class="step"><div class="step-number">02</div><div class="step-title">Mühəndislik analizi</div><div class="step-desc">Fərdi dizayn & simulyasiya</div></div>
-                    <div class="step"><div class="step-number">03</div><div class="step-title">Quraşdırma</div><div class="step-desc">Dəqiq tətbiq, minimal müdaxilə</div></div>
-                    <div class="step"><div class="step-number">04</div><div class="step-title">Monitorinq & Baxım</div><div class="step-desc">24/7 rəqəmsal nəzarət + proaktiv xidmət</div></div>
+                    <div class="step">
+                        <div class="step-number">01</div>
+                        <div class="step-title">Konsultasiya</div>
+                        <div class="step-desc">Enerji infrastrukturunun auditi və fizibilite hesabatı.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">02</div>
+                        <div class="step-title">Simulyasiya</div>
+                        <div class="step-desc">Fərdi mühəndislik analizi və 3D dizayn planlaması.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">03</div>
+                        <div class="step-title">İnteqrasiya</div>
+                        <div class="step-desc">Minimal müdaxilə ilə sürətli və mükəmməl quraşdırılma.</div>
+                    </div>
+                    <div class="step">
+                        <div class="step-number">04</div>
+                        <div class="step-title">Monitorinq</div>
+                        <div class="step-desc">24/7 rəqəmsal izləmə və proaktiv uzaqdan xidmət.</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="showcase" id="projects">
+        <!-- Showcase / Projects Section -->
+        <section class="showcase reveal" id="projects">
             <div class="container">
-                <h2 class="headline-lg" style="color:white; margin-bottom:56px;">Layihələrimiz</h2>
+                <h2 class="headline-lg">Sonuncu layihələr.</h2>
                 <div class="showcase-grid">
-                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/414837/pexels-photo-414837.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Günəş stansiyası · Gəncə · 45 MVt</div></div>
-                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/6463385/pexels-photo-6463385.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Sənaye damı · Bakı Sənaye Zonası</div></div>
-                    <div class="showcase-card" style="background-image: linear-gradient(0deg, rgba(0,0,0,0.4), rgba(0,0,0,0.1)), url('https://images.pexels.com/photos/51835/wind-energy-turbines-sun-energy-51835.jpeg?auto=compress&cs=tinysrgb&w=1600');"><div class="showcase-label">Külək turbinləri · Xızı dəhlizi</div></div>
+                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/414837/pexels-photo-414837.jpeg?auto=compress&cs=tinysrgb&w=800');">
+                        <div class="showcase-label">Gəncə Günəş Farmı · 45 MVt</div>
+                    </a>
+                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/6463385/pexels-photo-6463385.jpeg?auto=compress&cs=tinysrgb&w=800');">
+                        <div class="showcase-label">Bakı Sənaye Damı Layihəsi</div>
+                    </a>
+                    <a href="#" class="showcase-card" style="background-image: url('https://images.pexels.com/photos/51835/wind-energy-turbines-sun-energy-51835.jpeg?auto=compress&cs=tinysrgb&w=800');">
+                        <div class="showcase-label">Xızı Külək Dəhlizi Kompleksi</div>
+                    </a>
                 </div>
             </div>
         </section>
 
-        <section class="why-us">
+        <!-- Why Us Section -->
+        <section class="why-us reveal">
             <div class="container">
-                <h2 class="headline-lg">Niyə biz?</h2>
+                <h2 class="headline-lg">Niyə Eco AzEnergy?</h2>
                 <div class="features-grid">
-                    <div><div class="feature-icon">⚙️</div><div class="feature-title">Mühəndislik təcrübəsi</div><div class="feature-desc">20+ il enerji infrastrukturu bilgisi</div></div>
-                    <div><div class="feature-icon">📈</div><div class="feature-title">Yüksək səmərəlilik</div><div class="feature-desc">Optimal çevrilmə nisbətləri</div></div>
-                    <div><div class="feature-icon">🔒</div><div class="feature-title">Uzunmüddətli etibarlılıq</div><div class="feature-desc">Sərt iqlimlər üçün dizayn edilmiş</div></div>
-                    <div><div class="feature-icon">🛠️</div><div class="feature-title">Peşəkar baxım</div><div class="feature-desc">Lokal komandalar + proqnoz analitikası</div></div>
-                    <div><div class="feature-icon">🌍</div><div class="feature-title">Davamlı gələcək</div><div class="feature-desc">Karbon-mənfi istehsal tərəfdaşlığı</div></div>
+                    <div>
+                        <div class="feature-title">İllərin mühəndislik təcrübəsi</div>
+                        <div class="feature-desc">Enerji mühəndisliyi sahəsində dərin lokal və beynəlxalq standartlaşdırma biliyi.</div>
+                    </div>
+                    <div>
+                        <div class="feature-title">Maksimum səmərəlilik</div>
+                        <div class="feature-desc">İqlim şəraitinə uyğun olaraq optimallaşdırılmış fotovoltaik çevrilmə əmsalı.</div>
+                    </div>
+                    <div>
+                        <div class="feature-title">Premium dəstək</div>
+                        <div class="feature-desc">Lokal mobil texniki komandalar və kəsintisiz proqnozlaşdırılan proqram təminatı.</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="testimonials">
+        <!-- Testimonials -->
+        <section class="testimonials reveal">
             <div class="container">
-                <h2 class="headline-lg" style="text-align:center; margin-bottom:56px;">Müştəri sözləri</h2>
+                <h2 class="headline-lg">Müştəri rəyləri.</h2>
                 <div class="testimonial-grid">
-                    <div class="testimonial-card"><div class="quote-mark">“</div><div class="testimonial-text">Eco AzEnergy 12 MVt günəş stansiyasını vaxtından əvvəl təhvil verdi. Onların mühəndislik ciddiliyi və şəffaflığı rəqibsizdir.</div><div class="testimonial-author">— Leyla Məmmədova</div><div class="testimonial-title">CEO, Caspian Industries</div></div>
-                    <div class="testimonial-card"><div class="quote-mark">“</div><div class="testimonial-text">Külək enerjisi həlli enerji xərclərimizi 62% azaltdı. İki ildir fasiləsiz xidmət.</div><div class="testimonial-author">— Rəşid Əliyev</div><div class="testimonial-title">Direktor, AzTech</div></div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">“Eco AzEnergy sənaye obyektimiz üçün 12 MVt layihəni gözləniləndən tez tamamladı. Mühəndislik yanaşmaları heyranedicidir.”</div>
+                        <div class="testimonial-author">Leyla Məmmədova</div>
+                        <div class="testimonial-title">CEO, Caspian Industries</div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="testimonial-text">“Günəş və hibrid enerji həlli aylıq xərclərimizi tam 62% azaltdı. İki ildir ki, heç bir texniki fasilə yaşamamışıq.”</div>
+                        <div class="testimonial-author">Rəşid Əliyev</div>
+                        <div class="testimonial-title">Direktor, AzTech</div>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <section class="contact" id="contact">
+        <!-- Contact Section -->
+        <section class="contact reveal" id="contact">
             <div class="container">
                 <div class="contact-grid">
                     <div>
-                        <h2 class="headline-md" style="margin-bottom:36px;">Gəlin sabahı inşa edək</h2>
+                        <h2 class="headline-md" style="margin-bottom:24px;">Gəlin sabahı inşa edək.</h2>
                         <form id="contactForm">
                             <div class="form-group"><input type="text" placeholder="Tam ad" required></div>
-                            <div class="form-group"><input type="email" placeholder="E-poçt ünvanı" required></div>
-                            <div class="form-group"><textarea rows="3" placeholder="Layihə detalları və ya mesaj" required></textarea></div>
+                            <div class="form-group"><input type="email" placeholder="E-poçt" required></div>
+                            <div class="form-group"><textarea rows="3" placeholder="Layihə detalları" required></textarea></div>
                             <button type="submit" class="submit-btn">Müraciət göndər</button>
                         </form>
                     </div>
                     <div class="contact-info">
-                        <p><strong>Telefon</strong><br>+994 12 555 22 10</p>
-                        <p><strong>E-poçt</strong><br>hello@ecoazenergy.az</p>
-                        <p><strong>Baş ofis</strong><br>Port Baku, Neftçilər pr., Bakı, Azərbaycan</p>
-                        <div class="map-placeholder">📍 Google Maps — Premium enerji məhəlləsi</div>
+                        <p><strong>Telefon</strong>+994 12 555 22 10</p>
+                        <p><strong>E-poçt</strong>hello@ecoazenergy.az</p>
+                        <p><strong>Baş Ofis</strong>Port Baku, Neftçilər pr., Bakı, Azərbaycan</p>
+                        <div class="map-placeholder">📍 Google Maps — Premium Enerji Məhəlləsi</div>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Footer -->
         <footer>
             <div class="container">
                 <div class="footer-inner">
-                    <div style="font-weight:500;">© 2026 Eco AzEnergy — Təmiz enerji həlləri</div>
+                    <div>© 2026 Eco AzEnergy. Bütün hüquqlar qorunur.</div>
                     <div class="social-links">
                         <a href="#">LinkedIn</a>
                         <a href="#">Instagram</a>
@@ -719,34 +817,33 @@
     </main>
 
     <script>
-        const sections = document.querySelectorAll('section, .solution-block, .process, .showcase, .why-us, .testimonials, .contact');
-        const observer = new IntersectionObserver((entries) => {
+        // Smooth Scrolling Hero Background effect
+        const heroBg = document.querySelector('.hero-bg');
+        if(heroBg) {
+            window.addEventListener('scroll', () => {
+                let scrolled = window.scrollY;
+                heroBg.style.transform = `scale(${1 + scrolled * 0.0004}) translateY(${scrolled * 0.05}px)`;
+            });
+        }
+
+        // Apple Style Reveal on Scroll
+        const reveals = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     entry.target.classList.add('visible');
                 }
             });
-        }, { threshold: 0.1 });
-        sections.forEach(section => observer.observe(section));
-        document.querySelector('.hero')?.classList.add('visible');
-        document.querySelector('.stats-section')?.classList.add('visible');
+        }, { threshold: 0.08 });
         
-        const heroBg = document.querySelector('.hero-bg');
-        if(heroBg) {
-            window.addEventListener('scroll', () => {
-                let scrolled = window.scrollY;
-                heroBg.style.transform = `scale(${1 + scrolled * 0.0003})`;
-            });
-        }
+        reveals.forEach(el => revealObserver.observe(el));
 
+        // Form Handler
         const form = document.getElementById('contactForm');
         if(form) {
-            form.addEventListener('submit', async (e) => {
+            form.addEventListener('submit', (e) => {
                 e.preventDefault();
-                const name = form.querySelector('input[placeholder="Tam ad"]')?.value || '';
-                const email = form.querySelector('input[placeholder="E-poçt ünvanı"]')?.value || '';
-                const message = form.querySelector('textarea')?.value || '';
-                alert('Mesajınız qəbul edildi. 24 saat ərzində cavab verəcəyik.');
+                alert('Müraciətiniz qəbul edildi. 24 saat ərzində sizinlə əlaqə saxlanılacaq.');
                 form.reset();
             });
         }
