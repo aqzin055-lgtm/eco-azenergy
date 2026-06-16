@@ -1,251 +1,462 @@
+Bu tələblərə və sənəddəki məlumatlara əsasən, **Apple və Tesla** dizayn fəlsəfəsini tam əks etdirən, "Glassmorphism" UI elementləri və qüsursuz (smooth) səhifə keçidləri olan **Multi-Page (SPA - Single Page Application)** arxitekturasını hazırladım.
+
+Bu arxitektura tək bir HTML faylı içərisində tam hüquqlu çox səhifəli sayt kimi davranır. Hər menyu linkinə kliklədikdə səhifə aşağı sürüşmür, əksinə əvvəlki səhifə "fade-out" (yoxa çıxma) animasiyası ilə bağlanır və yeni səhifə "fade-in" animasiyası ilə açılır. Bütün məlumatlar (Cəbrayıl, Gəncə, Gədəbəy layihələri, komanda və partnyorlar) təqdim etdiyiniz rəsmi sənədə əsaslanır.
+
+Aşağıdakı kodu kopyalayıb `index.html` faylı kimi yaddaşda saxlayaraq birbaşa istifadə edə bilərsiniz:
+
+```html
 <!DOCTYPE html>
 <html lang="az">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Eco Az Energy | Minimalist İnnovasiya</title>
-    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>Eco Az Energy | Gələcəyin İnnovasiyası</title>
+    
+    <!-- Apple Tərzi Font (Inter / SF Pro Display) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #000000; color: #f5f5f7; line-height: 1.5; scroll-behavior: smooth; overflow-x: hidden; }
-        
-        /* Navigation */
-        nav { position: fixed; top: 0; width: 100%; padding: 16px 40px; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 100; border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; justify-content: space-between; align-items: center; }
-        .logo { font-size: 20px; font-weight: 600; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
-        .nav-links { display: flex; gap: 32px; }
-        .nav-links a { color: #a1a1a6; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease; }
-        .nav-links a:hover { color: #fff; }
-
-        /* General Layout */
-        section { padding: 120px 40px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
-        .section-title { font-size: 48px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.03em; color: #fff; }
-        .section-subtitle { font-size: 20px; color: #86868b; margin-bottom: 64px; max-width: 700px; }
-        
-        /* Hero Section */
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: none; position: relative; }
-        /* Şəkil əlavə etmək üçün: background-image: url('sizin-sekil.jpg'); */
-        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #0a0a0a; z-index: -1; }
-        .hero h1 { font-size: clamp(56px, 8vw, 96px); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 24px; }
-        .hero p { font-size: 24px; color: #86868b; max-width: 800px; margin-bottom: 40px; }
-        .btn { display: inline-block; padding: 14px 32px; background: #fff; color: #000; text-decoration: none; border-radius: 30px; font-weight: 500; font-size: 15px; transition: transform 0.2s; }
-        .btn:hover { transform: scale(1.02); }
-
-        /* Stats Grid */
-        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 40px; }
-        .stat-card { text-align: left; }
-        .stat-num { font-size: 56px; font-weight: 600; color: #fff; margin-bottom: 8px; }
-        .stat-text { font-size: 14px; color: #86868b; line-height: 1.4; }
-
-        /* Bento Grid (Təkliflər & Layihələr) */
-        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
-        .bento-card { background: #111112; border-radius: 24px; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; min-height: 400px; position: relative; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.02); }
-        .bento-card.large { grid-column: span 2; }
-        /* Şəkil yeri: div-in style hissəsinə url('..') əlavə edin */
-        .bento-image-placeholder { position: absolute; bottom: 0; right: 0; width: 100%; height: 60%; background: #1a1a1c; mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)); }
-        .bento-content { position: relative; z-index: 2; }
-        .bento-card h3 { font-size: 28px; margin-bottom: 12px; color: #fff; }
-        .bento-card p { font-size: 16px; color: #86868b; max-width: 400px; }
-        .bento-card ul { list-style: none; margin-top: 16px; color: #a1a1a6; font-size: 14px; }
-        .bento-card ul li { margin-bottom: 8px; position: relative; padding-left: 16px; }
-        .bento-card ul li::before { content: "•"; color: #fff; position: absolute; left: 0; }
-
-        /* List Grid for smaller items */
-        .list-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-        .list-item { background: #0a0a0c; padding: 32px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); }
-        .list-item h4 { font-size: 18px; margin-bottom: 8px; color: #fff; }
-        .list-item p { font-size: 14px; color: #86868b; }
-
-        /* Partners */
-        .partners-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 64px; opacity: 0.5; margin-top: 40px; }
-        .partner-logo { font-size: 24px; font-weight: 700; letter-spacing: 1px; color: #fff; }
-
-        /* Contact & Footer */
-        .contact-flex { display: flex; justify-content: space-between; gap: 80px; }
-        .contact-details p { font-size: 18px; color: #86868b; margin-bottom: 16px; }
-        .contact-details strong { color: #fff; display: block; margin-bottom: 4px; }
-        footer { padding: 40px; text-align: center; color: #555; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.05); }
-
-        @media (max-width: 900px) {
-            .bento-grid, .stats-grid, .list-grid, .contact-flex { grid-template-columns: 1fr; flex-direction: column; }
-            .bento-card.large { grid-column: span 1; }
-            .nav-links { display: none; }
+        /* === DƏYİŞƏNLƏR (VARIABLES) === */
+        :root {
+            --bg-base: #000000;
+            --bg-surface: #0a0a0c;
+            --bg-card: #111114;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --accent: #2997ff;
+            --border-glass: rgba(255, 255, 255, 0.08);
+            --radius-lg: 24px;
+            --radius-md: 16px;
         }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: var(--bg-base); }
+        ::-webkit-scrollbar-thumb { background: #333336; border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: #424245; }
+
+        /* === TYPOGRAPHY === */
+        h1, h2, h3, h4 { font-weight: 600; letter-spacing: -0.02em; }
+        .hero-title { font-size: clamp(48px, 8vw, 86px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; margin-bottom: 24px; }
+        .section-title { font-size: clamp(36px, 5vw, 56px); margin-bottom: 16px; }
+        .subtitle { font-size: clamp(18px, 2.5vw, 24px); color: var(--text-muted); max-width: 700px; line-height: 1.4; margin-bottom: 64px;}
+
+        /* === GƏZİNTİ (NAVIGATION) - GLASSMORPHISM === */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(24px); -webkit-backdrop-filter: blur(24px);
+            z-index: 1000; border-bottom: 1px solid var(--border-glass);
+        }
+        .nav-container { max-width: 1200px; margin: 0 auto; padding: 0 40px; height: 64px; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 18px; font-weight: 600; color: var(--text-main); text-decoration: none; letter-spacing: -0.01em; }
+        .nav-links { display: flex; gap: 32px; align-items: center; }
+        .nav-links button {
+            background: none; border: none; color: var(--text-muted); font-family: inherit;
+            font-size: 13px; font-weight: 500; cursor: pointer; transition: color 0.3s ease;
+        }
+        .nav-links button:hover, .nav-links button.active { color: var(--text-main); }
+        
+        .btn-nav-contact { background: var(--text-main) !important; color: var(--bg-base) !important; padding: 6px 16px; border-radius: 20px; font-weight: 600 !important; }
+        .btn-nav-contact:hover { opacity: 0.9; }
+
+        @media (max-width: 900px) { .nav-links { display: none; } }
+
+        /* === BUTTONS === */
+        .btn { display: inline-flex; align-items: center; justify-content: center; padding: 14px 28px; border-radius: 30px; font-size: 15px; font-weight: 500; text-decoration: none; transition: all 0.3s ease; cursor: pointer; border: none; font-family: inherit; }
+        .btn-primary { background: var(--text-main); color: var(--bg-base); }
+        .btn-primary:hover { transform: scale(1.02); opacity: 0.9; }
+        .btn-secondary { background: rgba(255,255,255,0.05); color: var(--text-main); border: 1px solid var(--border-glass); }
+        .btn-secondary:hover { background: rgba(255,255,255,0.1); }
+
+        /* === MULTI-PAGE ENGINE (SPA LOGIC) === */
+        .page {
+            display: none; opacity: 0; padding-top: 120px; min-height: 100vh;
+            transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out; transform: translateY(15px);
+        }
+        .page.active { display: block; opacity: 1; transform: translateY(0); }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; padding-bottom: 120px; }
+        @media (max-width: 768px) { .container { padding: 0 24px; padding-bottom: 80px; } }
+
+        /* === 1. HOME PAGE === */
+        .hero { height: calc(100vh - 120px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; }
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: radial-gradient(circle at center, #111116 0%, #000000 100%); z-index: -1; }
+        .hero-tags { display: flex; gap: 16px; justify-content: center; color: var(--text-muted); font-size: 13px; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 24px; }
+        .btn-group { display: flex; gap: 16px; justify-content: center; margin-top: 40px; }
+        
+        .trust-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 80px; border-top: 1px solid var(--border-glass); padding-top: 40px; }
+        .trust-item h3 { font-size: 40px; color: var(--text-main); margin-bottom: 8px; }
+        .trust-item p { color: var(--text-muted); font-size: 14px; }
+
+        /* === 2. ABOUT PAGE === */
+        .story-block { max-width: 800px; margin-bottom: 48px; }
+        .story-block p { font-size: 20px; color: var(--text-muted); line-height: 1.6; margin-bottom: 24px; }
+
+        /* === 3. SERVICES PAGE (TESLA STYLE CARDS) === */
+        .services-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        .service-card { background: var(--bg-card); border-radius: var(--radius-lg); overflow: hidden; display: flex; border: 1px solid var(--border-glass); min-height: 400px; }
+        .service-content { padding: 64px; flex: 1; display: flex; flex-direction: column; justify-content: center; }
+        .service-visual { flex: 1; background: #1a1a1c; position: relative; }
+        .service-visual::after { content: "Visual Placeholder"; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); color: #333; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .service-card h3 { font-size: 32px; margin-bottom: 16px; }
+        .service-card p { color: var(--text-muted); font-size: 16px; margin-bottom: 24px; }
+        .s-list { list-style: none; color: var(--text-muted); }
+        .s-list li { margin-bottom: 12px; padding-left: 16px; position: relative; }
+        .s-list li::before { content: "•"; color: var(--accent); position: absolute; left: 0; }
+        @media (max-width: 900px) { .service-card { flex-direction: column; } .service-visual { min-height: 300px; } .service-content { padding: 40px; } }
+
+        /* === 4. PROJECTS PAGE === */
+        .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 32px; }
+        .project-card { background: var(--bg-card); border: 1px solid var(--border-glass); border-radius: var(--radius-md); overflow: hidden; transition: transform 0.3s ease; }
+        .project-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.15); }
+        .project-img { height: 240px; background: #1a1a1c; display: flex; align-items: center; justify-content: center; color: #333; font-weight: 600; text-transform: uppercase; letter-spacing: 2px; }
+        .project-info { padding: 32px; }
+        .p-meta { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; font-weight: 600; color: var(--accent); text-transform: uppercase; letter-spacing: 0.05em; }
+        .p-title { font-size: 24px; margin-bottom: 12px; }
+        .p-desc { color: var(--text-muted); font-size: 15px; }
+        @media (max-width: 768px) { .projects-grid { grid-template-columns: 1fr; } }
+
+        /* === 5. PARTNERS PAGE === */
+        .partners-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 64px 80px; padding: 80px 0; opacity: 0.6; }
+        .partner-logo-item { font-size: 28px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+
+        /* === 6. TEAM PAGE === */
+        .team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+        .team-card { background: var(--bg-surface); padding: 40px; border-radius: var(--radius-md); border: 1px solid var(--border-glass); }
+        .t-role { color: var(--accent); font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+        .t-name { font-size: 24px; margin-bottom: 16px; }
+        @media (max-width: 900px) { .team-grid { grid-template-columns: 1fr; } }
+
+        /* === 7. CONTACT PAGE === */
+        .contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; }
+        .c-info-block { margin-bottom: 40px; }
+        .c-info-block h4 { font-size: 13px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 8px; }
+        .c-info-block p { font-size: 20px; font-weight: 500; }
+        .form-group { margin-bottom: 32px; }
+        input, textarea { width: 100%; padding: 16px 0; background: transparent; border: none; border-bottom: 1px solid var(--border-glass); color: var(--text-main); font-size: 18px; font-family: inherit; transition: border-color 0.3s; }
+        input:focus, textarea:focus { outline: none; border-bottom-color: var(--accent); }
+        @media (max-width: 900px) { .contact-layout { grid-template-columns: 1fr; gap: 48px; } }
     </style>
 </head>
 <body>
 
+    <!-- NAVIGATION -->
     <nav>
-        <a href="#" class="logo">Eco Az Energy</a>
-        <div class="nav-links">
-            <a href="#haqqimizda">Haqqımızda</a>
-            <a href="#teklifler">Təkliflərimiz</a>
-            <a href="#texniki">Texniki Həll</a>
-            <a href="#layiheler">Layihələr</a>
-            <a href="#komanda">Komanda</a>
-            <a href="#partnyorlar">Partnyorlar</a>
-            <a href="#elaqe">Əlaqə</a>
+        <div class="nav-container">
+            <a href="#" class="logo" onclick="navigate('home')">Eco Az Energy</a>
+            <div class="nav-links">
+                <button data-target="home" class="active" onclick="navigate('home')">Home</button>
+                <button data-target="about" onclick="navigate('about')">Haqqımızda</button>
+                <button data-target="services" onclick="navigate('services')">Xidmətlər</button>
+                <button data-target="projects" onclick="navigate('projects')">Layihələr</button>
+                <button data-target="partners" onclick="navigate('partners')">Partnyorlar</button>
+                <button data-target="team" onclick="navigate('team')">Komanda</button>
+                <button data-target="contact" class="btn-nav-contact" onclick="navigate('contact')">Əlaqə</button>
+            </div>
         </div>
     </nav>
 
-    <section class="hero" id="home">
-        <div class="hero-bg" style="background-image: url('');"></div> <!-- Şəkil yeri -->
-        <h1>Sabahı gücləndiririk.</h1>
-        <p>Yol işıqlandırması, transformator quraşdırılması və günəş enerjisi ekosistemi[cite: 2].</p>
-        <a href="#teklifler" class="btn">Həlləri kəşf et</a>
-    </section>
-
-    <section id="haqqimizda">
-        <h2 class="section-title">Haqqımızda.</h2>
-        <p class="section-subtitle">2004-cü ildən enerji sektorunda fəaliyyət göstərən, geniş profilli mühəndislik və texniki xidmət şirkəti[cite: 2].</p>
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-num">200+</div>
-                <div class="stat-text">İcra edilmiş uğurlu layihə[cite: 2].</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num">60%</div>
-                <div class="stat-text">Müştərilərin enerji xərcində azalma[cite: 2].</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num">424</div>
-                <div class="stat-text">Cəbrayılda günəş paneli ilə təchiz edilən ev[cite: 2].</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-num">1 il</div>
-                <div class="stat-text">Ağıllı SCADA sistemi ilə uzaqdan monitorinq[cite: 2].</div>
-            </div>
-        </div>
-    </section>
-
-    <section id="teklifler">
-        <h2 class="section-title">Təkliflərimiz.</h2>
-        <p class="section-subtitle">Sənaye və yaşayış kompleksləri üçün tam təchizat[cite: 2].</p>
-        <div class="bento-grid">
-            <div class="bento-card large">
-                <div class="bento-image-placeholder" style="background-image: url('');"></div> <!-- Şəkil yeri -->
-                <div class="bento-content">
-                    <h3>Yol İşıqlandırması</h3>
-                    <p>Magistral və şəhərətrafı yollarda müasir LED işıqlandırma sistemlərinin layihələndirilməsi və quraşdırılması[cite: 2].</p>
-                </div>
-            </div>
-            <div class="bento-card">
-                <div class="bento-image-placeholder" style="background-image: url('');"></div> <!-- Şəkil yeri -->
-                <div class="bento-content">
-                    <h3>Transformator Stansiyaları</h3>
-                    <p>Elektrik şəbəkəsinin gücləndirilməsi. 2500 KVA-a qədər, 10/0.4 kV və 35 kV gərginlik səviyyəsində sistemlər[cite: 2].</p>
-                </div>
-            </div>
-            <div class="bento-card">
-                <div class="bento-image-placeholder" style="background-image: url('');"></div> <!-- Şəkil yeri -->
-                <div class="bento-content">
-                    <h3>Günəş Enerjisi</h3>
-                    <p>On-Grid, Off-Grid və Hibrid günəş enerjisi sistemləri ilə maksimum etibarlılıq[cite: 2].</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="texniki">
-        <h2 class="section-title">Texniki Həll.</h2>
-        <p class="section-subtitle">Ehtiyacınıza uyğun ən ideal mühəndislik yanaşması[cite: 2].</p>
-        <div class="bento-grid">
-            <div class="bento-card">
-                <div class="bento-content">
-                    <h3>On-Grid Sistem</h3>
-                    <ul>
-                        <li>Elektrik şəbəkəsinə birbaşa qoşulma və şəbəkəyə geri satış imkanı[cite: 2].</li>
-                        <li>Yüksək güclü LED dirəklər və mərkəzləşdirilmiş idarəetmə[cite: 2].</li>
-                        <li>Gecə/gündüz avtomatik sensoru[cite: 2].</li>
-                        <li>Enerji sərfiyyatını 70%-ə qədər azaldır (şəhər yolları üçün ideal)[cite: 2].</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="bento-card">
-                <div class="bento-content">
-                    <h3>Off-Grid / Hibrid Sistem</h3>
-                    <ul>
-                        <li>Şəbəkəsiz ərazilərdə tam avtonom (Günəş paneli + akkumulyator + invertor)[cite: 2].</li>
-                        <li>Gecə boyunca fasiləsiz işıqlandırma təminatı[cite: 2].</li>
-                        <li>Sürətli quraşdırma və minimal xidmət tələbi[cite: 2].</li>
-                        <li>Kənd yolları və körpülər üçün idealdır[cite: 2].</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="layiheler">
-        <h2 class="section-title">Layihələr.</h2>
-        <p class="section-subtitle">İcra edilmiş və davam edən qürurverici işlərimiz[cite: 2].</p>
-        <div class="list-grid">
-            <!-- Hər list-item içinə background-image əlavə edərək şəkil qoya bilərsiniz -->
-            <div class="list-item"><h4>Cəbrayıl Mega Layihə</h4><p>Soltanlı kəndində 424 evin günəş paneli ilə təchiz edilməsi[cite: 2].</p></div>
-            <div class="list-item"><h4>Gədəbəy Off-Grid</h4><p>Elektrik şəbəkəsi olmayan ərazidə 40 kWatt sistem[cite: 2].</p></div>
-            <div class="list-item"><h4>Gəncə On-Grid</h4><p>Şəhər ərazisində 25 kVt gücündə panellərin quraşdırılması[cite: 2].</p></div>
-            <div class="list-item"><h4>Şüvəlan Stansiyaları</h4><p>17 kVt və 10 kVt On-Grid, həmçinin 2 kVt Hibrid sistemlər[cite: 2].</p></div>
-            <div class="list-item"><h4>Ağdam, Kəngərli</h4><p>İcra Hakimiyyətinin inzibati binasının günəş sistemi[cite: 2].</p></div>
-            <div class="list-item"><h4>Xankəndi & Tərtər</h4><p>Dövlət Dram Teatrı və Tərtər-1 ASC-də Yüksək Gərginlik Xətləri[cite: 2].</p></div>
-            <div class="list-item"><h4>Ağalı Otel</h4><p>Ağıllı SCADA sisteminin qurulması[cite: 2].</p></div>
-            <div class="list-item"><h4>Sənaye & Biznes</h4><p>Zeytun Pharmaceuticals və Ballı Marketlərdə elektrik təchizatı[cite: 2].</p></div>
-            <div class="list-item"><h4>Qarabağ Polad Yol</h4><p>16 ədəd körpünün işıqlandırılması təklifi (Qüvvədədir)[cite: 2].</p></div>
-        </div>
-    </section>
-
-    <section id="komanda">
-        <h2 class="section-title">Komandamız.</h2>
-        <p class="section-subtitle">Arxamızdakı peşəkar mühəndis və rəhbər heyəti[cite: 2].</p>
-        <div class="list-grid">
-            <div class="list-item">
-                <p style="color:#2997ff; font-weight:600; margin-bottom:8px;">Təsisçi Direktor</p>
-                <h4>Həmzə Vəliyev</h4>
-                <p>Enerji sektorunda 20 il təcrübə, 200+ layihənin rəhbəri və beynəlxalq əməkdaşlıq[cite: 2].</p>
-            </div>
-            <div class="list-item">
-                <p style="color:#2997ff; font-weight:600; margin-bottom:8px;">Baş Mühəndis</p>
-                <h4>Rövşən Namazov</h4>
-                <p>Elektrik mühəndisliyi üzrə ixtisas. On/Off-Grid sistemlər və texniki nəzarət[cite: 2].</p>
-            </div>
-            <div class="list-item">
-                <p style="color:#2997ff; font-weight:600; margin-bottom:8px;">Dizayner Mühəndis</p>
-                <h4>Rəvan Məmmədli</h4>
-                <p>AutoCAD / CAD dizayn və günəş sistemlərinin dəqiq layihələndirilməsi[cite: 2].</p>
-            </div>
-        </div>
-    </section>
-
-    <section id="partnyorlar">
-        <h2 class="section-title">Partnyorlarımız.</h2>
-        <div class="partners-container">
-            <div class="partner-logo">LONGI</div>
-            <div class="partner-logo">GoodWe</div>
-            <div class="partner-logo">GROWATT</div>
-            <div class="partner-logo">AE Solar</div>
-            <div class="partner-logo">SIEMENS</div>
-            <div class="partner-logo">TommaTech</div>
-            <div class="partner-logo">LS ELECTRIC</div>
-            <div class="partner-logo">Hyundai Electric</div>
-            <div class="partner-logo">SMT Enerji</div>
-        </div>
-    </section>
-
-    <section id="elaqe">
-        <div class="contact-flex">
+    <!-- 1. HOME PAGE -->
+    <main id="home" class="page active">
+        <div class="container hero">
+            <div class="hero-bg"></div>
             <div>
-                <h2 class="section-title">Əlaqə.</h2>
-                <p class="section-subtitle">İnnovativ enerji həlləri üçün bizimlə əlaqə saxlayın.</p>
-            </div>
-            <div class="contact-details">
-                <p><strong>Telefon</strong> 050 250 19 53[cite: 2]</p>
-                <p><strong>E-poçt</strong> ecoazenergy@gmail.com[cite: 2]</p>
-                <p><strong>Showroom</strong> Bakı ş., Ağ Şəhər, Yaşıl Ada 2. küçəsi[cite: 2]</p>
-                <p><strong>Şöbə</strong> Zaqatala r., Bizim İnşaat[cite: 2]</p>
+                <div class="hero-tags">
+                    <span>Günəş Enerjisi</span> • <span>Transformator</span> • <span>Yol İşıqlandırması</span>
+                </div>
+                <h1 class="hero-title">Sabahı gücləndiririk.</h1>
+                <p class="subtitle" style="margin: 0 auto;">Sənaye, biznes və yaşayış sahələri üçün müasir mühəndislik, işıqlandırma və dayanıqlı enerji ekosistemi.</p>
+                <div class="btn-group">
+                    <button class="btn btn-primary" onclick="navigate('projects')">Layihələrə Bax</button>
+                    <button class="btn btn-secondary" onclick="navigate('contact')">Əlaqə Saxla</button>
+                </div>
+
+                <div class="trust-grid">
+                    <div class="trust-item"><h3>200+</h3><p>Uğurlu Layihə</p></div>
+                    <div class="trust-item"><h3>20+</h3><p>İl Mühəndislik Təcrübəsi</p></div>
+                    <div class="trust-item"><h3>60%</h3><p>Enerji Xərcində Qənaət</p></div>
+                </div>
             </div>
         </div>
-    </section>
+    </main>
 
-    <footer>
-        © 2026 Eco Az Energy. Bütün hüquqlar qorunur. Mühəndislik daxili təmizliyimizdir[cite: 2].
-    </footer>
+    <!-- 2. ABOUT PAGE -->
+    <main id="about" class="page">
+        <div class="container">
+            <h1 class="section-title">2004-cü ildən bəri.</h1>
+            <div class="story-block">
+                <p>Eco Az Energy enerji sektorunda geniş profilli mühəndislik və texniki xidmət şirkətidir. Hədəfimiz mühəndislik qüsursuzluğunu ən müasir texnologiyalarla birləşdirməkdir.</p>
+                <p>Transformatorların quraşdırılması, yüksək gərginlikli hava xətlərinin çəkilməsi və günəş enerjisi avadanlıqlarının inteqrasiyası sahəsində həm dövlət, həm də sənaye miqyaslı təcrübəmiz var. Biz layihələndirmədən istismara qədər tam təchizatçı rolunu üstlənirik.</p>
+            </div>
+        </div>
+    </main>
 
+    <!-- 3. SERVICES PAGE -->
+    <main id="services" class="page">
+        <div class="container">
+            <h1 class="section-title">Xidmətlər.</h1>
+            <p class="subtitle">Ehtiyaca özəl dizayn edilmiş elektrik və infrastruktur modelləri.</p>
+
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Günəş Enerjisi Sistemləri</h3>
+                        <p>On-Grid, Off-Grid və Hibrid sistemlər vasitəsilə tam avtonomluq və ya şəbəkəyə inteqrasiya.</p>
+                        <ul class="s-list">
+                            <li>Panel, invertor və akkumulyator təchizatı</li>
+                            <li>Şəbəkəyə geri satış üçün sənədləşmə dəstəyi</li>
+                        </ul>
+                    </div>
+                    <div class="service-visual"></div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card" style="flex-direction: row-reverse;">
+                    <div class="service-content">
+                        <h3>Transformatorların Quraşdırılması</h3>
+                        <p>Elektrik şəbəkəsinin gücləndirilməsi üçün 2500 KVA-a qədər yüksək gərginlikli stansiyalar.</p>
+                        <ul class="s-list">
+                            <li>10/0.4 kV və 35 kV gərginlik səviyyəsi</li>
+                            <li>Vakuum, eleqaz və avtomat açarlar</li>
+                        </ul>
+                    </div>
+                    <div class="service-visual"></div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-content">
+                        <h3>Yol İşıqlandırması</h3>
+                        <p>Magistral və şəhərətrafı yollarda müasir, enerji qənaətli LED işıqlandırma.</p>
+                        <ul class="s-list">
+                            <li>Enerji sərfiyyatını 70%-ə qədər azaltma</li>
+                            <li>Gecə/gündüz avtomatik sensor idarəetməsi</li>
+                        </ul>
+                    </div>
+                    <div class="service-visual"></div>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card" style="flex-direction: row-reverse;">
+                    <div class="service-content">
+                        <h3>SCADA & İnfrastruktur</h3>
+                        <p>Layihə sonrası uzaqdan monitorinq və qoruma sistemləri.</p>
+                        <ul class="s-list">
+                            <li>24/7 SCADA əsaslı nəzarət imkanı</li>
+                            <li>Naqil, kabel xətləri və ildırımdan qoruma</li>
+                        </ul>
+                    </div>
+                    <div class="service-visual"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 4. PROJECTS PAGE -->
+    <main id="projects" class="page">
+        <div class="container">
+            <h1 class="section-title">Layihələr.</h1>
+            <p class="subtitle">Sənaye, dövlət və yaşayış sektorunda uğurla tamamlanmış işlərimiz.</p>
+
+            <div class="projects-grid">
+                <div class="project-card">
+                    <div class="project-img">Image Placeholder</div>
+                    <div class="project-info">
+                        <div class="p-meta"><span>Cəbrayıl</span><span>Mega Layihə</span></div>
+                        <h3 class="p-title">Soltanlı 424 Ev</h3>
+                        <p class="p-desc">Kənddəki 424 evin tamamilə günəş panelləri ilə təchiz edilməsi və enerji infrastrukturunun avtonom qurulması.</p>
+                    </div>
+                </div>
+                
+                <div class="project-card">
+                    <div class="project-img">Image Placeholder</div>
+                    <div class="project-info">
+                        <div class="p-meta"><span>Gəncə şəhəri</span><span>25 kW</span></div>
+                        <h3 class="p-title">On-Grid Stansiya</h3>
+                        <p class="p-desc">Şəhər ərazisində elektrik şəbəkəsinə birbaşa bağlı olan yüksək səmərəli günəş paneli stansiyası.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">Image Placeholder</div>
+                    <div class="project-info">
+                        <div class="p-meta"><span>Gədəbəy rayonu</span><span>40 kW</span></div>
+                        <h3 class="p-title">Off-Grid Avtonom Sistem</h3>
+                        <p class="p-desc">Mərkəzi elektrik şəbəkəsi olmayan ucqar ərazidə akkumulyator dəstəkli tam avtonom enerji sistemi.</p>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <div class="project-img">Image Placeholder</div>
+                    <div class="project-info">
+                        <div class="p-meta"><span>Ağdam & Tərtər</span><span>İnfrastruktur</span></div>
+                        <h3 class="p-title">Dövlət Obyektləri</h3>
+                        <p class="p-desc">Kəngərli kəndi İH binasının günəş sistemi və Tərtər-1 ASC-də Yüksək Gərginlik Xəttinin çəkilməsi.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 5. PARTNERS PAGE -->
+    <main id="partners" class="page">
+        <div class="container">
+            <h1 class="section-title text-center" style="text-align: center;">Partnyorlarımız.</h1>
+            <p class="subtitle" style="margin: 0 auto; text-align: center;">Dünyanın aparıcı texnologiya istehsalçıları ilə birgə çalışırıq.</p>
+
+            <div class="partners-grid">
+                <span class="partner-logo-item">AE SOLAR</span>
+                <span class="partner-logo-item">LONGI</span>
+                <span class="partner-logo-item">GOODWE</span>
+                <span class="partner-logo-item">GROWATT</span>
+                <span class="partner-logo-item">SIEMENS</span>
+                <span class="partner-logo-item">LS ELECTRIC</span>
+                <span class="partner-logo-item">TOMMATECH</span>
+                <span class="partner-logo-item">FAERS</span>
+            </div>
+        </div>
+    </main>
+
+    <!-- 6. TEAM PAGE -->
+    <main id="team" class="page">
+        <div class="container">
+            <h1 class="section-title">Komanda.</h1>
+            <p class="subtitle">Peşəkar mühəndis və rəhbər heyətimiz.</p>
+
+            <div class="team-grid">
+                <div class="team-card">
+                    <div class="t-role">CEO / Təsisçi Direktor</div>
+                    <h3 class="t-name">Həmzə Vəliyev</h3>
+                    <ul class="s-list">
+                        <li>Enerji sektorunda 20 il təcrübə</li>
+                        <li>200+ layihənin rəhbəri</li>
+                    </ul>
+                </div>
+                <div class="team-card">
+                    <div class="t-role">Baş Mühəndis</div>
+                    <h3 class="t-name">Rövşən Namazov</h3>
+                    <ul class="s-list">
+                        <li>Elektrik mühəndisliyi eksperti</li>
+                        <li>On/Off-Grid layihələrin nəzarəti</li>
+                    </ul>
+                </div>
+                <div class="team-card">
+                    <div class="t-role">Dizayner Mühəndis</div>
+                    <h3 class="t-name">Rəvan Məmmədli</h3>
+                    <ul class="s-list">
+                        <li>Sistemlərin CAD layihələndirilməsi</li>
+                        <li>Texniki dizayn arxitekturası</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- 7. CONTACT PAGE -->
+    <main id="contact" class="page">
+        <div class="container">
+            <h1 class="section-title">Əlaqə.</h1>
+            
+            <div class="contact-layout">
+                <div>
+                    <div class="c-info-block">
+                        <h4>Mərkəzi Ofis</h4>
+                        <p>Bakı ş. Ağ Şəhər, Yaşıl Ada 2. küçəsi</p>
+                    </div>
+                    <div class="c-info-block">
+                        <h4>E-poçt ünvanı</h4>
+                        <p>ecoazenergy@gmail.com</p>
+                    </div>
+                    <div class="c-info-block">
+                        <h4>Telefon nömrəsi</h4>
+                        <p>+994 50 250 19 53</p>
+                    </div>
+                </div>
+                <div>
+                    <form onsubmit="event.preventDefault(); alert('Müraciət göndərildi!');">
+                        <div class="form-group"><input type="text" placeholder="Tam adınız" required></div>
+                        <div class="form-group"><input type="email" placeholder="E-poçtunuz" required></div>
+                        <div class="form-group"><textarea rows="4" placeholder="Layihə detalları" required></textarea></div>
+                        <button type="submit" class="btn btn-primary">İndi göndər</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- JAVASCRIPT: SPA MULTI-PAGE ENGINE -->
+    <script>
+        function navigate(pageId) {
+            // 1. Mövcud aktiv səhifəni və linki tap
+            const currentActivePage = document.querySelector('.page.active');
+            const navLinks = document.querySelectorAll('.nav-links button');
+            
+            // Linkləri yenilə
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if(link.getAttribute('data-target') === pageId) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Əgər eyni səhifədəyiksə, heç nə etmə
+            if(currentActivePage && currentActivePage.id === pageId) return;
+
+            // 2. Keçid animasiyası (Fade Out)
+            if(currentActivePage) {
+                currentActivePage.style.opacity = '0';
+                currentActivePage.style.transform = 'translateY(15px)';
+                
+                setTimeout(() => {
+                    currentActivePage.classList.remove('active');
+                    showNewPage(pageId);
+                }, 400); // CSS transition müddəti ilə eyni
+            } else {
+                showNewPage(pageId);
+            }
+        }
+
+        function showNewPage(pageId) {
+            const newPage = document.getElementById(pageId);
+            newPage.classList.add('active');
+            
+            // Səhifəni ən yuxarı qaytar
+            window.scrollTo(0,0);
+            
+            // Reflow məcburiyyəti (Animasiyanın işləməsi üçün)
+            void newPage.offsetWidth; 
+            
+            // Fade In
+            newPage.style.opacity = '1';
+            newPage.style.transform = 'translateY(0)';
+        }
+
+        // Sayt açılanda URL hash varsa (məs: index.html#about), o səhifəni aç, yoxsa 'home' aç
+        window.addEventListener('load', () => {
+            const hash = window.location.hash.substring(1);
+            if(hash && document.getElementById(hash)) {
+                navigate(hash);
+            } else {
+                // Səhifə ilk dəfə yüklənəndə birbaşa Home-u göstər
+                const homePage = document.getElementById('home');
+                homePage.classList.add('active');
+                homePage.style.opacity = '1';
+                homePage.style.transform = 'translateY(0)';
+            }
+        });
+    </script>
 </body>
 </html>
+
+```
