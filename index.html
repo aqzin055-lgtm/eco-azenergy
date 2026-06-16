@@ -3,205 +3,249 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>Eco Az Energy | Yüksək Texnologiyalı Enerji Həlləri</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <title>Eco Az Energy | Minimalist İnnovasiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=SF+Pro+Display:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, sans-serif; background-color: #000000; color: #f5f5f7; line-height: 1.5; scroll-behavior: smooth; overflow-x: hidden; }
+        
+        /* Navigation */
+        nav { position: fixed; top: 0; width: 100%; padding: 16px 40px; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); z-index: 100; border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 20px; font-weight: 600; color: #fff; text-decoration: none; letter-spacing: -0.02em; }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { color: #a1a1a6; text-decoration: none; font-size: 13px; font-weight: 500; transition: color 0.3s ease; }
+        .nav-links a:hover { color: #fff; }
+
+        /* General Layout */
+        section { padding: 120px 40px; max-width: 1200px; margin: 0 auto; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .section-title { font-size: 48px; font-weight: 600; margin-bottom: 16px; letter-spacing: -0.03em; color: #fff; }
+        .section-subtitle { font-size: 20px; color: #86868b; margin-bottom: 64px; max-width: 700px; }
+        
+        /* Hero Section */
+        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: none; position: relative; }
+        /* Şəkil əlavə etmək üçün: background-image: url('sizin-sekil.jpg'); */
+        .hero-bg { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-color: #0a0a0a; z-index: -1; }
+        .hero h1 { font-size: clamp(56px, 8vw, 96px); font-weight: 700; letter-spacing: -0.04em; margin-bottom: 24px; }
+        .hero p { font-size: 24px; color: #86868b; max-width: 800px; margin-bottom: 40px; }
+        .btn { display: inline-block; padding: 14px 32px; background: #fff; color: #000; text-decoration: none; border-radius: 30px; font-weight: 500; font-size: 15px; transition: transform 0.2s; }
+        .btn:hover { transform: scale(1.02); }
+
+        /* Stats Grid */
+        .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 40px; }
+        .stat-card { text-align: left; }
+        .stat-num { font-size: 56px; font-weight: 600; color: #fff; margin-bottom: 8px; }
+        .stat-text { font-size: 14px; color: #86868b; line-height: 1.4; }
+
+        /* Bento Grid (Təkliflər & Layihələr) */
+        .bento-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px; }
+        .bento-card { background: #111112; border-radius: 24px; padding: 40px; display: flex; flex-direction: column; justify-content: space-between; min-height: 400px; position: relative; overflow: hidden; border: 1px solid rgba(255, 255, 255, 0.02); }
+        .bento-card.large { grid-column: span 2; }
+        /* Şəkil yeri: div-in style hissəsinə url('..') əlavə edin */
+        .bento-image-placeholder { position: absolute; bottom: 0; right: 0; width: 100%; height: 60%; background: #1a1a1c; mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)); -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0)); }
+        .bento-content { position: relative; z-index: 2; }
+        .bento-card h3 { font-size: 28px; margin-bottom: 12px; color: #fff; }
+        .bento-card p { font-size: 16px; color: #86868b; max-width: 400px; }
+        .bento-card ul { list-style: none; margin-top: 16px; color: #a1a1a6; font-size: 14px; }
+        .bento-card ul li { margin-bottom: 8px; position: relative; padding-left: 16px; }
+        .bento-card ul li::before { content: "•"; color: #fff; position: absolute; left: 0; }
+
+        /* List Grid for smaller items */
+        .list-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .list-item { background: #0a0a0c; padding: 32px; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); }
+        .list-item h4 { font-size: 18px; margin-bottom: 8px; color: #fff; }
+        .list-item p { font-size: 14px; color: #86868b; }
+
+        /* Partners */
+        .partners-container { display: flex; flex-wrap: wrap; justify-content: center; gap: 64px; opacity: 0.5; margin-top: 40px; }
+        .partner-logo { font-size: 24px; font-weight: 700; letter-spacing: 1px; color: #fff; }
+
+        /* Contact & Footer */
+        .contact-flex { display: flex; justify-content: space-between; gap: 80px; }
+        .contact-details p { font-size: 18px; color: #86868b; margin-bottom: 16px; }
+        .contact-details strong { color: #fff; display: block; margin-bottom: 4px; }
+        footer { padding: 40px; text-align: center; color: #555; font-size: 12px; border-top: 1px solid rgba(255,255,255,0.05); }
+
+        @media (max-width: 900px) {
+            .bento-grid, .stats-grid, .list-grid, .contact-flex { grid-template-columns: 1fr; flex-direction: column; }
+            .bento-card.large { grid-column: span 1; }
+            .nav-links { display: none; }
+        }
+    </style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">Eco Az Energy</a>
-            <ul class="nav-links">
-                <li><a href="#home">Ana səhifə</a></li>
-                <li><a href="#about">Haqqımızda</a></li>
-                <li><a href="#services">Xidmətlər</a></li>
-                <li><a href="#projects">Layihələr</a></li>
-                <li><a href="#team">Komanda</a></li>
-                <li><a href="#partners">Partnyorlar</a></li>
-                <li><a href="#contact">Əlaqə</a></li>
-            </ul>
-            <div class="nav-right">
-                <a href="#contact" class="btn-primary-small">Təklif al</a>
-            </div>
+
+    <nav>
+        <a href="#" class="logo">Eco Az Energy</a>
+        <div class="nav-links">
+            <a href="#haqqimizda">Haqqımızda</a>
+            <a href="#teklifler">Təkliflərimiz</a>
+            <a href="#texniki">Texniki Həll</a>
+            <a href="#layiheler">Layihələr</a>
+            <a href="#komanda">Komanda</a>
+            <a href="#partnyorlar">Partnyorlar</a>
+            <a href="#elaqe">Əlaqə</a>
         </div>
     </nav>
-    <main>
-        <!-- Home -->
-        <section id="home" class="hero-section">
-            <div class="hero-bg">
-                <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80" alt="Müasir Günəş Panelləri">
+
+    <section class="hero" id="home">
+        <div class="hero-bg" style="background-image: url('');"></div> <!-- Şəkil yeri -->
+        <h1>Sabahı gücləndiririk.</h1>
+        <p>Yol işıqlandırması, transformator quraşdırılması və günəş enerjisi ekosistemi[cite: 2].</p>
+        <a href="#teklifler" class="btn">Həlləri kəşf et</a>
+    </section>
+
+    <section id="haqqimizda">
+        <h2 class="section-title">Haqqımızda.</h2>
+        <p class="section-subtitle">2004-cü ildən enerji sektorunda fəaliyyət göstərən, geniş profilli mühəndislik və texniki xidmət şirkəti[cite: 2].</p>
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-num">200+</div>
+                <div class="stat-text">İcra edilmiş uğurlu layihə[cite: 2].</div>
             </div>
-            <div class="hero-content fade-up">
-                <h1 class="hero-title">Eco Az Energy</h1>
-                <p class="hero-subtitle">Günəş Enerjisi • Transformator • Yol İşıqlandırması</p>
-                <div class="hero-stats">
-                    <div class="stat">
-                        <h2>20+</h2>
-                        <p>İl Təcrübə</p>
-                    </div>
-                    <div class="stat">
-                        <h2>200+</h2>
-                        <p>Uğurlu Layihə</p>
-                    </div>
-                    <div class="stat">
-                        <h2>100%</h2>
-                        <p>Premium Keyfiyyət</p>
-                    </div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-num">60%</div>
+                <div class="stat-text">Müştərilərin enerji xərcində azalma[cite: 2].</div>
             </div>
-        </section>
-        <!-- About Us -->
-        <section id="about" class="about-section padded-section bg-dark">
-            <div class="container fade-up">
-                <h2 class="section-title">Haqqımızda</h2>
-                <div class="about-grid">
-                    <div class="about-text">
-                        <p class="lead">2004-cü ildən bəri fəaliyyət göstərən, gələcəyin infrastrukturunu quran enerji şirkəti.</p>
-                        <p>Eco Az Energy müasir standartlara cavab verən alternativ enerji sistemləri, transformator quraşdırılması, və SCADA monitorinq sistemləri sahəsində ixtisaslaşmış qabaqcıl bir şirkətdir. Bizim əsas məqsədimiz həm böyük sənaye obyektləri, həm də fərdi yaşayış kompleksləri üçün ekoloji təmiz, təhlükəsiz və səmərəli enerji infrastrukturu yaratmaqdır.</p>
-                        <p>Biz etibarlılığı və premium yanaşmanı ön planda tutaraq, hər bir layihəni incəliklə dizayn edirik.</p>
-                    </div>
-                    <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1497440001374-f26997328c1b?auto=format&fit=crop&w=800&q=80" alt="Haqqımızda - Eco Az Energy">
-                    </div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-num">424</div>
+                <div class="stat-text">Cəbrayılda günəş paneli ilə təchiz edilən ev[cite: 2].</div>
             </div>
-        </section>
-        <!-- Services -->
-        <section id="services" class="services-section padded-section">
-            <div class="container fade-up">
-                <h2 class="section-title text-center">Xidmətlər</h2>
-                <p class="section-subtitle text-center">İnnovativ və səmərəli enerji həlləri.</p>
-                <div class="services-grid">
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-                        </div>
-                        <h3>Günəş Enerjisi Sistemləri</h3>
-                        <p>On-Grid, Off-Grid və Hibrid günəş sistemləri. Enerji müstəqilliyinizi təmin edirik.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
-                        </div>
-                        <h3>Transformator Quraşdırılması</h3>
-                        <p>Böyük həcmli sənaye obyektləri üçün mürəkkəb elektrik sistemlərinin qurulması.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 18h6M10 22h4M12 2v2M12 7a5 5 0 0 0-5 5c0 2 1.5 3 2 4.5V18h6v-1.5c.5-1.5 2-2.5 2-4.5a5 5 0 0 0-5-5z"/></svg>
-                        </div>
-                        <h3>Yol İşıqlandırması və LED</h3>
-                        <p>Müasir avtomobil yolları və parklar üçün estetik və effektiv LED sistemlər.</p>
-                    </div>
-                    <div class="service-card">
-                        <div class="service-icon">
-                            <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
-                        </div>
-                        <h3>Elektrik Avadanlıqları & SCADA</h3>
-                        <p>Ağıllı monitorinq, dəqiq nəzarət sistemi və premium avadanlıq təchizatı.</p>
-                    </div>
-                </div>
+            <div class="stat-card">
+                <div class="stat-num">1 il</div>
+                <div class="stat-text">Ağıllı SCADA sistemi ilə uzaqdan monitorinq[cite: 2].</div>
             </div>
-        </section>
-        <!-- Projects -->
-        <section id="projects" class="projects-section padded-section bg-dark">
-            <div class="container fade-up">
-                <h2 class="section-title">Layihələr</h2>
-                <p class="section-subtitle">Real nəticələr, mükəmməl icra.</p>
-                <div class="projects-grid">
-                    <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=800&q=80" alt="Cəbrayıl Layihəsi">
-                        <div class="project-info">
-                            <h3>Cəbrayıl – 424 ev</h3>
-                            <p>Premium günəş panellərinin və tam infrastrukturun qurulması.</p>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1588503463690-336338a0c201?auto=format&fit=crop&w=800&q=80" alt="Gəncə Layihəsi">
-                        <div class="project-info">
-                            <h3>Gəncə – 25kW Stansiya</h3>
-                            <p>Sənaye obyekti üçün On-Grid günəş enerjisi sistemi.</p>
-                        </div>
-                    </div>
-                    <div class="project-card">
-                        <img src="https://images.unsplash.com/photo-1613665813446-82a78c468a1d?auto=format&fit=crop&w=800&q=80" alt="Bakı İşıqlandırma">
-                        <div class="project-info">
-                            <h3>Bakı – Yol İşıqlandırması</h3>
-                            <p>Mərkəzi küçələr üçün ağıllı LED işıqlandırma.</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Team -->
-        <section id="team" class="team-section padded-section">
-            <div class="container fade-up">
-                <h2 class="section-title text-center">Komanda</h2>
-                <p class="section-subtitle text-center">Sizin enerjiniz, bizim təcrübəmiz.</p>
-                <div class="team-grid">
-                    <div class="team-member">
-                        <div class="member-img"></div>
-                        <h4>Həmzə Vəliyev</h4>
-                        <p>Təsisçi Direktor</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-img"></div>
-                        <h4>Elvin Rəhimov</h4>
-                        <p>Baş Mühəndis</p>
-                    </div>
-                    <div class="team-member">
-                        <div class="member-img"></div>
-                        <h4>Aysel Məmmədova</h4>
-                        <p>Layihə Rəhbəri</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Partners -->
-        <section id="partners" class="partners-section padded-section bg-dark">
-            <div class="container fade-up">
-                <h2 class="section-title text-center">Partnyorlar</h2>
-                <div class="partners-logo-grid">
-                    <div class="partner-logo">Longi</div>
-                    <div class="partner-logo">GoodWe</div>
-                    <div class="partner-logo">Growatt</div>
-                    <div class="partner-logo">ABB</div>
-                    <div class="partner-logo">Siemens</div>
-                </div>
-            </div>
-        </section>
-        <!-- Contact -->
-        <section id="contact" class="contact-section padded-section">
-            <div class="container fade-up">
-                <div class="contact-grid">
-                    <div class="contact-info-block">
-                        <h2 class="section-title">Əlaqə</h2>
-                        <p class="lead">Yeni layihənizi birlikdə müzakirə edək.</p>
-                        <div class="contact-details">
-                            <p><strong>Telefon:</strong> +994 50 250 19 53</p>
-                            <p><strong>E-poçt:</strong> ecoazenergy@gmail.com</p>
-                            <p><strong>Ünvan:</strong> Bakı, Azərbaycan</p>
-                        </div>
-                    </div>
-                    <div class="contact-form-block">
-                        <form class="contact-form" onsubmit="event.preventDefault(); alert('Mesajınız göndərildi!');">
-                            <input type="text" placeholder="Ad və Soyad" required>
-                            <input type="email" placeholder="E-poçt" required>
-                            <textarea rows="4" placeholder="Mesajınız" required></textarea>
-                            <button type="submit" class="btn-primary">Göndər</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-    <footer class="footer bg-dark">
-        <div class="container">
-            <p>&copy; 2024 Eco Az Energy. Bütün hüquqlar qorunur.</p>
         </div>
+    </section>
+
+    <section id="teklifler">
+        <h2 class="section-title">Təkliflərimiz.</h2>
+        <p class="section-subtitle">Sənaye və yaşayış kompleksləri üçün tam təchizat[cite: 2].</p>
+        <div class="bento-grid">
+            <div class="bento-card large">
+                <div class="bento-image-placeholder" style="background-image: url('');"></div> <!-- Şəkil yeri -->
+                <div class="bento-content">
+                    <h3>Yol İşıqlandırması</h3>
+                    <p>Magistral və şəhərətrafı yollarda müasir LED işıqlandırma sistemlərinin layihələndirilməsi və quraşdırılması[cite: 2].</p>
+                </div>
+            </div>
+            <div class="bento-card">
+                <div class="bento-image-placeholder" style="background-image: url('');"></div> <!-- Şəkil yeri -->
+                <div class="bento-content">
+                    <h3>Transformator Stansiyaları</h3>
+                    <p>Elektrik şəbəkəsinin gücləndirilməsi. 2500 KVA-a qədər, 10/0.4 kV və 35 kV gərginlik səviyyəsində sistemlər[cite: 2].</p>
+                </div>
+            </div>
+            <div class="bento-card">
+                <div class="bento-image-placeholder" style="background-image: url('');"></div> <!-- Şəkil yeri -->
+                <div class="bento-content">
+                    <h3>Günəş Enerjisi</h3>
+                    <p>On-Grid, Off-Grid və Hibrid günəş enerjisi sistemləri ilə maksimum etibarlılıq[cite: 2].</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="texniki">
+        <h2 class="section-title">Texniki Həll.</h2>
+        <p class="section-subtitle">Ehtiyacınıza uyğun ən ideal mühəndislik yanaşması[cite: 2].</p>
+        <div class="bento-grid">
+            <div class="bento-card">
+                <div class="bento-content">
+                    <h3>On-Grid Sistem</h3>
+                    <ul>
+                        <li>Elektrik şəbəkəsinə birbaşa qoşulma və şəbəkəyə geri satış imkanı[cite: 2].</li>
+                        <li>Yüksək güclü LED dirəklər və mərkəzləşdirilmiş idarəetmə[cite: 2].</li>
+                        <li>Gecə/gündüz avtomatik sensoru[cite: 2].</li>
+                        <li>Enerji sərfiyyatını 70%-ə qədər azaldır (şəhər yolları üçün ideal)[cite: 2].</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="bento-card">
+                <div class="bento-content">
+                    <h3>Off-Grid / Hibrid Sistem</h3>
+                    <ul>
+                        <li>Şəbəkəsiz ərazilərdə tam avtonom (Günəş paneli + akkumulyator + invertor)[cite: 2].</li>
+                        <li>Gecə boyunca fasiləsiz işıqlandırma təminatı[cite: 2].</li>
+                        <li>Sürətli quraşdırma və minimal xidmət tələbi[cite: 2].</li>
+                        <li>Kənd yolları və körpülər üçün idealdır[cite: 2].</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="layiheler">
+        <h2 class="section-title">Layihələr.</h2>
+        <p class="section-subtitle">İcra edilmiş və davam edən qürurverici işlərimiz[cite: 2].</p>
+        <div class="list-grid">
+            <!-- Hər list-item içinə background-image əlavə edərək şəkil qoya bilərsiniz -->
+            <div class="list-item"><h4>Cəbrayıl Mega Layihə</h4><p>Soltanlı kəndində 424 evin günəş paneli ilə təchiz edilməsi[cite: 2].</p></div>
+            <div class="list-item"><h4>Gədəbəy Off-Grid</h4><p>Elektrik şəbəkəsi olmayan ərazidə 40 kWatt sistem[cite: 2].</p></div>
+            <div class="list-item"><h4>Gəncə On-Grid</h4><p>Şəhər ərazisində 25 kVt gücündə panellərin quraşdırılması[cite: 2].</p></div>
+            <div class="list-item"><h4>Şüvəlan Stansiyaları</h4><p>17 kVt və 10 kVt On-Grid, həmçinin 2 kVt Hibrid sistemlər[cite: 2].</p></div>
+            <div class="list-item"><h4>Ağdam, Kəngərli</h4><p>İcra Hakimiyyətinin inzibati binasının günəş sistemi[cite: 2].</p></div>
+            <div class="list-item"><h4>Xankəndi & Tərtər</h4><p>Dövlət Dram Teatrı və Tərtər-1 ASC-də Yüksək Gərginlik Xətləri[cite: 2].</p></div>
+            <div class="list-item"><h4>Ağalı Otel</h4><p>Ağıllı SCADA sisteminin qurulması[cite: 2].</p></div>
+            <div class="list-item"><h4>Sənaye & Biznes</h4><p>Zeytun Pharmaceuticals və Ballı Marketlərdə elektrik təchizatı[cite: 2].</p></div>
+            <div class="list-item"><h4>Qarabağ Polad Yol</h4><p>16 ədəd körpünün işıqlandırılması təklifi (Qüvvədədir)[cite: 2].</p></div>
+        </div>
+    </section>
+
+    <section id="komanda">
+        <h2 class="section-title">Komandamız.</h2>
+        <p class="section-subtitle">Arxamızdakı peşəkar mühəndis və rəhbər heyəti[cite: 2].</p>
+        <div class="list-grid">
+            <div class="list-item">
+                <p style="color:#2997ff; font-weight:600; margin-bottom:8px;">Təsisçi Direktor</p>
+                <h4>Həmzə Vəliyev</h4>
+                <p>Enerji sektorunda 20 il təcrübə, 200+ layihənin rəhbəri və beynəlxalq əməkdaşlıq[cite: 2].</p>
+            </div>
+            <div class="list-item">
+                <p style="color:#2997ff; font-weight:600; margin-bottom:8px;">Baş Mühəndis</p>
+                <h4>Rövşən Namazov</h4>
+                <p>Elektrik mühəndisliyi üzrə ixtisas. On/Off-Grid sistemlər və texniki nəzarət[cite: 2].</p>
+            </div>
+            <div class="list-item">
+                <p style="color:#2997ff; font-weight:600; margin-bottom:8px;">Dizayner Mühəndis</p>
+                <h4>Rəvan Məmmədli</h4>
+                <p>AutoCAD / CAD dizayn və günəş sistemlərinin dəqiq layihələndirilməsi[cite: 2].</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="partnyorlar">
+        <h2 class="section-title">Partnyorlarımız.</h2>
+        <div class="partners-container">
+            <div class="partner-logo">LONGI</div>
+            <div class="partner-logo">GoodWe</div>
+            <div class="partner-logo">GROWATT</div>
+            <div class="partner-logo">AE Solar</div>
+            <div class="partner-logo">SIEMENS</div>
+            <div class="partner-logo">TommaTech</div>
+            <div class="partner-logo">LS ELECTRIC</div>
+            <div class="partner-logo">Hyundai Electric</div>
+            <div class="partner-logo">SMT Enerji</div>
+        </div>
+    </section>
+
+    <section id="elaqe">
+        <div class="contact-flex">
+            <div>
+                <h2 class="section-title">Əlaqə.</h2>
+                <p class="section-subtitle">İnnovativ enerji həlləri üçün bizimlə əlaqə saxlayın.</p>
+            </div>
+            <div class="contact-details">
+                <p><strong>Telefon</strong> 050 250 19 53[cite: 2]</p>
+                <p><strong>E-poçt</strong> ecoazenergy@gmail.com[cite: 2]</p>
+                <p><strong>Showroom</strong> Bakı ş., Ağ Şəhər, Yaşıl Ada 2. küçəsi[cite: 2]</p>
+                <p><strong>Şöbə</strong> Zaqatala r., Bizim İnşaat[cite: 2]</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        © 2026 Eco Az Energy. Bütün hüquqlar qorunur. Mühəndislik daxili təmizliyimizdir[cite: 2].
     </footer>
-    <script src="main.js"></script>
+
 </body>
 </html>
