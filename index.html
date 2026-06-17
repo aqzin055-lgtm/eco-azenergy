@@ -2,143 +2,303 @@
 <html lang="az">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Haqqımızda — Eco AzEnergy</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Eco Az Energy | Peşəkar Mühəndislik</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
-        .about-hero { padding: 120px 0 60px; text-align: center; }
-        .about-hero h1 { font-size: 48px; margin-bottom: 16px; }
-        .about-hero p { font-size: 20px; color: var(--text-secondary); max-width: 800px; margin: 0 auto; line-height: 1.6; }
+        /* =========================================
+           Eco Az Energy - Professional Theme 
+           Apple/Tesla Inspired Minimalism
+           ========================================= */
+        :root {
+            --bg: #000000;
+            --surface: #0a0a0c;
+            --surface-card: #121214;
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --accent: #2997ff;
+            --accent-gradient: linear-gradient(135deg, #00C6FF 0%, #0072ff 100%);
+            --border: rgba(255, 255, 255, 0.08);
+            --blur: blur(20px);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            padding: 40px 0;
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
-        .team-card {
-            background: var(--surface-color);
-            border-radius: 24px;
-            padding: 40px;
-            text-align: center;
-            border: 1px solid var(--border-color);
+        html { scroll-behavior: smooth; }
+        
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+        .section { padding: 100px 0; border-bottom: 1px solid var(--border); }
+        .section-title { font-size: 40px; font-weight: 600; text-align: center; margin-bottom: 60px; letter-spacing: -0.02em; }
+        
+        .text-gradient {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
-        .team-avatar {
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.1);
-            margin: 0 auto 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 40px;
+        /* Navbar */
+        nav {
+            position: fixed; top: 0; width: 100%; height: 60px;
+            background: rgba(0, 0, 0, 0.7); backdrop-filter: var(--blur);
+            border-bottom: 1px solid var(--border); z-index: 1000;
+            display: flex; align-items: center; justify-content: center;
         }
-        .team-card h3 { font-size: 24px; margin-bottom: 8px; }
-        .team-card h4 { font-size: 16px; color: var(--accent-primary); margin-bottom: 24px; }
-        .team-card ul { text-align: left; list-style-type: none; color: var(--text-secondary); font-size: 15px; }
-        .team-card ul li { margin-bottom: 8px; position: relative; padding-left: 20px; }
-        .team-card ul li::before { content: "•"; position: absolute; left: 0; color: var(--accent-primary); }
-        .partners-section { padding: 80px 0; text-align: center; }
-        .partners-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 40px;
-            align-items: center;
-            margin-top: 40px;
-            opacity: 0.7;
+        .nav-inner {
+            width: 100%; max-width: 1200px; padding: 0 24px;
+            display: flex; justify-content: space-between; align-items: center;
         }
-        .partners-grid h2 { font-size: 20px; color: var(--text-secondary); }
+        .logo { font-weight: 600; font-size: 18px; letter-spacing: -0.01em; }
+        .nav-links { display: flex; gap: 32px; }
+        .nav-links a { font-size: 14px; color: var(--text-muted); transition: 0.3s; }
+        .nav-links a:hover { color: var(--text-main); }
+        
+        /* Language Dropdown */
+        .lang-dropdown { position: relative; display: inline-block; }
+        .lang-btn { background: none; border: none; color: var(--text-muted); font-size: 14px; cursor: pointer; }
+        .lang-content {
+            display: none; position: absolute; right: 0; top: 30px;
+            background: var(--surface-card); border: 1px solid var(--border);
+            border-radius: 8px; overflow: hidden;
+        }
+        .lang-dropdown:hover .lang-content { display: block; }
+        .lang-content button {
+            display: block; width: 100%; padding: 10px 20px; text-align: left;
+            background: none; border: none; color: var(--text-main); cursor: pointer;
+        }
+        .lang-content button:hover { background: rgba(255,255,255,0.1); }
+        /* Buttons */
+        .btn {
+            padding: 12px 24px; border-radius: 30px; font-size: 15px; font-weight: 500;
+            cursor: pointer; transition: 0.3s; border: none; display: inline-block;
+        }
+        .btn-primary { background: var(--text-main); color: var(--bg); }
+        .btn-primary:hover { transform: scale(1.05); }
+        /* Hero */
+        .hero {
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            object-fit: cover; opacity: 0.4; z-index: -1;
+        }
+        .hero h1 { font-size: clamp(40px, 8vw, 80px); line-height: 1.1; margin-bottom: 20px; max-width: 900px; }
+        .hero p { font-size: 20px; color: var(--text-muted); max-width: 600px; margin-bottom: 40px; }
+        /* Stats */
+        .stats { display: flex; justify-content: center; gap: 80px; text-align: center; padding: 40px 0; flex-wrap: wrap; }
+        .stats h2 { font-size: 48px; margin-bottom: 8px; }
+        .stats p { color: var(--text-muted); font-size: 14px; text-transform: uppercase; letter-spacing: 1px; }
+        /* Bento Grid (Products & Solutions) */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; }
+        .card {
+            background: var(--surface-card); border: 1px solid var(--border);
+            border-radius: 24px; padding: 40px; transition: 0.3s;
+            position: relative; overflow: hidden;
+        }
+        .card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.2); }
+        .card h3 { font-size: 24px; margin-bottom: 12px; }
+        .card p { color: var(--text-muted); font-size: 16px; margin-bottom: 24px; }
+        .card img { width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 24px; }
+        /* Team & Partners */
+        .team-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 24px; }
+        .partner-logos { display: flex; flex-wrap: wrap; gap: 40px; justify-content: center; opacity: 0.6; }
+        .partner-logos span { font-size: 24px; font-weight: 600; }
+        /* Forms */
+        input, textarea {
+            width: 100%; padding: 16px; background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border); border-radius: 12px;
+            color: white; font-family: inherit; margin-bottom: 16px;
+        }
+        input:focus, textarea:focus { outline: none; border-color: var(--accent); }
+        /* Animations */
+        .reveal { opacity: 0; transform: translateY(30px); transition: 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         @media (max-width: 768px) {
-            .team-grid { grid-template-columns: 1fr; }
+            .nav-links a:not(.lang-dropdown a) { display: none; }
+            .stats { gap: 40px; flex-direction: column; }
         }
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">Eco AzEnergy</a>
+        <div class="nav-inner">
+            <a href="#" class="logo">ECO AZ ENERGY</a>
             <div class="nav-links">
-                <a href="gunes-panelleri.html" data-key="nav_panels">Günəş Panelləri</a>
-                <a href="invertorlar.html" data-key="nav_inverters">İnvertorlar</a>
-                <a href="transformatorlar.html" data-key="nav_transformers">Transformatorlar</a>
-                <a href="yol-isiqlandirmasi.html" data-key="nav_lighting">İşıqlandırma</a>
-                <div class="lang-selector" id="langSelector">
+                <a href="#about" data-i18n="nav_about">Haqqımızda</a>
+                <a href="#products" data-i18n="nav_products">Məhsullar</a>
+                <a href="#projects" data-i18n="nav_projects">Layihələr</a>
+                <a href="#contact" data-i18n="nav_contact">Əlaqə</a>
+                <div class="lang-dropdown">
                     <button class="lang-btn" id="langBtn">AZ ▼</button>
-                    <div class="lang-dropdown">
-                        <button data-lang="az">Azərbaycanca</button>
-                        <button data-lang="en">English</button>
-                        <button data-lang="ru">Русский</button>
+                    <div class="lang-content">
+                        <button onclick="setLang('az')">AZ</button>
+                        <button onclick="setLang('en')">EN</button>
+                        <button onclick="setLang('ru')">RU</button>
                     </div>
                 </div>
             </div>
         </div>
     </nav>
-    <main>
-        <section class="about-hero reveal">
-            <div class="container">
-                <h1 class="text-gradient" data-key="about_title">Haqqımızda</h1>
-                <p data-key="about_desc">Eco Az Energy 2004-cü ildən enerji sektorunda fəaliyyət göstərən, geniş profilli mühəndislik və texniki xidmət şirkətidir. Həmçinin bir çox tanınmış günəş paneli, inverter və batareya brendlərinin Azərbaycana idxalçısıdır.</p>
-            </div>
-        </section>
-        <section class="container reveal">
-            <h2 class="text-center" style="font-size: 32px; margin-bottom: 20px;">Komandamız</h2>
-            <div class="team-grid">
-                
-                <div class="team-card">
-                    <div class="team-avatar">👨‍💼</div>
-                    <h3>Həmzə Vəliyev</h3>
-                    <h4>Təsisçi Direktor</h4>
-                    <ul>
-                        <li>Enerji sektorunda 20 il təcrübə</li>
-                        <li>200+ layihənin rəhbəri</li>
-                        <li>Beynəlxalq əməkdaşlıq təcrübəsi</li>
-                    </ul>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">👷‍♂️</div>
-                    <h3>Rövşən Namazov</h3>
-                    <h4>Baş Mühəndis</h4>
-                    <ul>
-                        <li>Elektrik mühəndisliyi üzrə ixtisas</li>
-                        <li>On-Grid/Off-Grid/Hibrid layihələr</li>
-                        <li>Texniki nəzarət və texniki dəstək</li>
-                    </ul>
-                </div>
-                <div class="team-card">
-                    <div class="team-avatar">👨‍💻</div>
-                    <h3>Rəvan Məmmədli</h3>
-                    <h4>Dizayner Mühəndis</h4>
-                    <ul>
-                        <li>Texniki layihələndirmə</li>
-                        <li>AutoCAD / CAD dizayn</li>
-                        <li>Günəş sistemlərinin layihələndirilməsi</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
-        <section class="partners-section container reveal">
-            <h2 style="font-size: 32px; margin-bottom: 20px;">Qlobal Partnyorlarımız</h2>
-            <div class="partners-grid">
-                <h2>TommaTech</h2>
-                <h2>AE Solar</h2>
-                <h2>LonGi</h2>
-                <h2>FAERS</h2>
-                <h2>GOODWE</h2>
-                <h2>GROWATT</h2>
-                <h2>Siemens</h2>
-                <h2>Hyundai Electric</h2>
-                <h2>LS Electric</h2>
-            </div>
-        </section>
-    </main>
-    <footer>
-        <div class="container">
-            <p>© 2026 Eco AzEnergy. Bütün hüquqlar qorunur.</p>
+    <header class="hero">
+        <img src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1920&q=80" alt="Solar" class="hero-bg">
+        <h1 class="text-gradient reveal" data-i18n="hero_title">Sabahı Gücləndiririk.</h1>
+        <p class="reveal" data-i18n="hero_sub" style="transition-delay: 0.1s;">Yol işıqlandırması, transformator quraşdırılması və günəş enerjisi üzrə tam təmiz mühəndislik ekosistemi.</p>
+        <a href="#products" class="btn btn-primary reveal" data-i18n="btn_explore" style="transition-delay: 0.2s;">Həlləri Kəşf Et</a>
+    </header>
+    <section id="about" class="section container">
+        <div class="stats reveal">
+            <div><h2 class="text-gradient">200+</h2><p data-i18n="stat_projects">İcra Edilmiş Layihə</p></div>
+            <div><h2 class="text-gradient">60%</h2><p data-i18n="stat_saving">Enerji Xərci Azalması</p></div>
+            <div><h2 class="text-gradient">1 İl</h2><p data-i18n="stat_monitor">Uzaqdan Monitorinq</p></div>
         </div>
+        <div class="text-center reveal" style="max-width: 800px; margin: 60px auto 0; text-align: center;">
+            <p data-i18n="about_desc">Eco Az Energy 2004-cü ildən enerji sektorunda fəaliyyət göstərən, geniş profilli mühəndislik şirkətidir. Dünyanın ən aparıcı brendlərinin (Longi, AE Solar, GoodWe) idxalçısı və rəsmi tərəfdaşıyıq.</p>
+        </div>
+    </section>
+    <section id="products" class="section container">
+        <h2 class="section-title reveal" data-i18n="nav_products">Məhsullar və Həllər</h2>
+        <div class="grid">
+            
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=600&q=80" alt="Panels">
+                <h3 data-i18n="prod_solar">Günəş Panelləri</h3>
+                <p data-i18n="prod_solar_desc">AE Solar, LonGi, FAERS brendlərinin 415W - 740W gücündə yüksək səmərəli panelləri.</p>
+                <a href="#contact" class="btn btn-primary" data-i18n="btn_order">Sifariş Et</a>
+            </div>
+            <div class="card reveal">
+                <img src="https://images.unsplash.com/photo-1592833159057-6dd0048e4b78?auto=format&fit=crop&w=600&q=80" alt="Inverters">
+                <h3 data-i18n="prod_inv">İnvertorlar</h3>
+                <p data-i18n="prod_inv_desc">GOODWE və GROWATT ağıllı enerji idarəetmə sistemləri. On-Grid və Hibrid.</p>
+                <a href="#contact" class="btn btn-primary" data-i18n="btn_order">Sifariş Et</a>
+            </div>
+            <div class="card reveal">
+                <img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Transformers">
+                <h3 data-i18n="prod_trans">Transformatorlar</h3>
+                <p data-i18n="prod_trans_desc">2500 KVA-a qədər, 10/0.4 kV və 35 kV stansiyalar və paylayıcı şkaflar.</p>
+                <a href="#contact" class="btn btn-primary" data-i18n="btn_order">Sifariş Et</a>
+            </div>
+            <div class="card reveal">
+                <img src="https://images.pexels.com/photos/1108572/pexels-photo-1108572.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Lighting">
+                <h3 data-i18n="prod_light">Yol İşıqlandırması</h3>
+                <p data-i18n="prod_light_desc">Magistral və şəhərətrafı yollarda müasir LED işıqlandırma sistemlərinin qurulması.</p>
+                <a href="#contact" class="btn btn-primary" data-i18n="btn_order">Sifariş Et</a>
+            </div>
+        </div>
+    </section>
+    <section id="projects" class="section container">
+        <h2 class="section-title reveal" data-i18n="nav_projects">İcra Edilmiş Layihələr</h2>
+        <div class="grid">
+            <div class="card reveal">
+                <h3>Cəbrayıl Mega Layihəsi</h3>
+                <p>Soltanlı kəndindəki 424 evin günəş paneli ilə təchiz edilməsi. Uzaqdan monitorinq sistemi.</p>
+            </div>
+            <div class="card reveal">
+                <h3>Gəncə şəhəri On-Grid</h3>
+                <p>25kVt On-Grid günəş paneli sisteminin layihələndirilməsi və quraşdırılması.</p>
+            </div>
+            <div class="card reveal">
+                <h3>Gədəbəy Off-Grid Sistem</h3>
+                <p>Elektrik şəbəkəsi olmayan dağlıq ərazidə 40 kWatt Off-Grid günəş stansiyası.</p>
+            </div>
+        </div>
+    </section>
+    <section id="contact" class="section container">
+        <div class="grid">
+            <div class="reveal">
+                <h2 style="font-size: 40px; margin-bottom: 20px;" class="text-gradient" data-i18n="contact_title">Bizimlə Əlaqə</h2>
+                <p style="margin-bottom: 40px; color: var(--text-muted);" data-i18n="contact_desc">Layihənizi bizimlə müzakirə edin və ya məhsullarımız haqqında daha çox məlumat alın.</p>
+                
+                <h4 style="margin-bottom: 10px;">Showroom</h4>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">Bakı ş. Ağ Şəhər Yaşıl Ada 2. küçəsi</p>
+                
+                <h4 style="margin-bottom: 10px;">Şöbə</h4>
+                <p style="color: var(--text-muted); margin-bottom: 24px;">Zaqatala r. Bizim İnşaat</p>
+                
+                <h4 style="margin-bottom: 10px;">Əlaqə</h4>
+                <p style="color: var(--text-muted);">ecoazenergy@gmail.com <br> +994 50 250 19 53</p>
+            </div>
+            
+            <div class="card reveal">
+                <form onsubmit="event.preventDefault(); alert('Mesajınız göndərildi!');">
+                    <input type="text" placeholder="Adınız və Soyadınız" required>
+                    <input type="tel" placeholder="Əlaqə nömrəniz" required>
+                    <textarea placeholder="Mesajınız və ya layihə barədə məlumat" required></textarea>
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Göndər</button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <footer style="text-align: center; padding: 40px 0; color: var(--text-muted); font-size: 14px;">
+        <p>© 2026 Eco Az Energy. Bütün hüquqlar qorunur.</p>
     </footer>
-    <script src="js/translations.js"></script>
-    <script src="js/main.js"></script>
+    <!-- JavaScript (Translations & Animations) -->
+    <script>
+        // Dictionary
+        const dict = {
+            az: {
+                nav_about: "Haqqımızda", nav_products: "Məhsullar", nav_projects: "Layihələr", nav_contact: "Əlaqə",
+                hero_title: "Sabahı Gücləndiririk.", hero_sub: "Yol işıqlandırması, transformator quraşdırılması və günəş enerjisi üzrə tam təmiz mühəndislik ekosistemi.",
+                btn_explore: "Həlləri Kəşf Et", btn_order: "Sifariş Et",
+                stat_projects: "İcra Edilmiş Layihə", stat_saving: "Enerji Xərci Azalması", stat_monitor: "Uzaqdan Monitorinq",
+                about_desc: "Eco Az Energy 2004-cü ildən enerji sektorunda fəaliyyət göstərən, geniş profilli mühəndislik şirkətidir. Dünyanın ən aparıcı brendlərinin (Longi, AE Solar, GoodWe) idxalçısı və rəsmi tərəfdaşıyıq.",
+                prod_solar: "Günəş Panelləri", prod_solar_desc: "AE Solar, LonGi, FAERS brendlərinin 415W - 740W gücündə yüksək səmərəli panelləri.",
+                prod_inv: "İnvertorlar", prod_inv_desc: "GOODWE və GROWATT ağıllı enerji idarəetmə sistemləri. On-Grid və Hibrid.",
+                prod_trans: "Transformatorlar", prod_trans_desc: "2500 KVA-a qədər, 10/0.4 kV və 35 kV stansiyalar və paylayıcı şkaflar.",
+                prod_light: "Yol İşıqlandırması", prod_light_desc: "Magistral və şəhərətrafı yollarda müasir LED işıqlandırma sistemlərinin qurulması.",
+                contact_title: "Bizimlə Əlaqə", contact_desc: "Layihənizi bizimlə müzakirə edin və ya məhsullarımız haqqında daha çox məlumat alın."
+            },
+            en: {
+                nav_about: "About Us", nav_products: "Products", nav_projects: "Projects", nav_contact: "Contact",
+                hero_title: "Powering Tomorrow.", hero_sub: "Road lighting, transformer installation, and solar energy clean engineering ecosystem.",
+                btn_explore: "Explore Solutions", btn_order: "Order Now",
+                stat_projects: "Completed Projects", stat_saving: "Energy Cost Reduction", stat_monitor: "Remote Monitoring",
+                about_desc: "Eco Az Energy is an engineering company operating in the energy sector since 2004. Official importer of Longi, AE Solar, GoodWe.",
+                prod_solar: "Solar Panels", prod_solar_desc: "High efficiency panels by AE Solar, LonGi, FAERS (415W - 740W).",
+                prod_inv: "Inverters", prod_inv_desc: "GOODWE and GROWATT smart energy systems. On-Grid and Hybrid.",
+                prod_trans: "Transformers", prod_trans_desc: "Up to 2500 KVA stations and distribution cabinets.",
+                prod_light: "Road Lighting", prod_light_desc: "Modern LED lighting systems for highways and roads.",
+                contact_title: "Contact Us", contact_desc: "Discuss your project with us or get a quote."
+            },
+            ru: {
+                nav_about: "О Нас", nav_products: "Продукты", nav_projects: "Проекты", nav_contact: "Контакты",
+                hero_title: "Энергия Завтрашнего Дня.", hero_sub: "Комплексная инженерная экосистема для освещения, трансформаторов и солнечной энергии.",
+                btn_explore: "Узнать Решения", btn_order: "Заказать",
+                stat_projects: "Проектов", stat_saving: "Снижение Затрат", stat_monitor: "Мониторинг",
+                about_desc: "Eco Az Energy работает с 2004 года. Официальный партнер Longi, AE Solar, GoodWe.",
+                prod_solar: "Солнечные Панели", prod_solar_desc: "AE Solar, LonGi, FAERS мощностью 415W - 740W.",
+                prod_inv: "Инверторы", prod_inv_desc: "GOODWE и GROWATT.",
+                prod_trans: "Трансформаторы", prod_trans_desc: "Станции до 2500 КВА и распределительные шкафы.",
+                prod_light: "Освещение", prod_light_desc: "Современное LED освещение для трасс.",
+                contact_title: "Свяжитесь с нами", contact_desc: "Обсудите проект или запросите цену."
+            }
+        };
+        // Translation Logic
+        function setLang(lang) {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[lang][key]) el.textContent = dict[lang][key];
+            });
+            document.getElementById('langBtn').textContent = lang.toUpperCase() + ' ▼';
+        }
+        // Scroll Reveal Animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if(entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
